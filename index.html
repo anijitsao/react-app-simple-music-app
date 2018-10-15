@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html ng-app="app">
+
+<head>
+	<title>Music Dashboard Page</title>
+
+	<!-- loading css -->
+	<!-- <link rel="stylesheet" type="text/css" href="css/bootstrap.css"> -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+	 crossorigin="anonymous">
+
+	<!-- loading scripts -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+	<script type="text/javascript" src="lib/angular.js"></script>
+	<script type="text/javascript" src="lib/angular-resource.js"></script>
+	<!-- <script type="text/javascript" src = "lib/angular-route.js"></script> -->
+
+	<script type="text/javascript" src="js/musicApp.js"></script>
+	<script type="text/javascript" src="js/factory.js"></script>
+	<script type="text/javascript" src="js/controllers.js"></script>
+</head>
+
+<body>
+	<div class="container" ng-controller="appCtrl">
+		<div class="row">
+			<div class="col-md-4"></div>
+			<div class="col-md-4">
+				<div class="panel panel-primary">
+
+
+					<!-- <div ng-view></div> -->
+					<!-- list of tracks -->
+					<div class="panel-heading">
+						<h1>List of {{category}}</h1>
+					</div>
+
+					<div class="panel-body">
+
+						<!-- Search box to search music/ genre-->
+						<div class="input-group">
+							<span class="input-group-addon">
+							<i class="glyphicon glyphicon-search"></i>
+							</span>
+
+							<input type="text" ng-model="searchName" class="form-control" />
+						</div>
+						<!-- list of tracks -->
+						<table class="table table-striped" ng-if='showMusic'>
+							<tr ng-repeat="music in musicTracks | filter: searchName" ng-click="editMusic(music);">
+								<td><strong>{{music.title}}</strong> [
+									<span ng-repeat="genre in music.genres">{{genre.name}}|	</span>]
+								</td>
+
+								<!-- Ratings -->
+								<td>
+									<span class="glyphicon glyphicon-star" ng-repeat="n in music.stars"></span>
+								</td>
+
+								<!-- Rename section -->
+								<td ng-show='showEdit' ng-controller='updateCtrl'>
+									<div>
+										ReName: <input type="" ng-model='name'> <br/> ReRate: <input type="" ng-model='rating'> <br/> ReAssign Genres:
+										<input type="" ng-model='genre'> <br/>
+										<button class="btn btn-primary" ng-click='updateTrack(); !showEdit'>Save Edits</button>
+									</div>
+								</td>
+							</tr>
+						</table>
+
+						<!-- listing of Genres -->
+						<table class="table table-striped" ng-if='showGenre'>
+							<tr ng-repeat="music in genresList | filter: searchName" ng-click="editGenre(music)">
+								<td><strong>{{music.name}}</strong>
+
+									<!-- Edit/ Rename Genres -->
+								</td>
+								<td ng-show='showEdit' ng-controller='updateCtrl'>
+									<div>
+										ReName: <input type="" ng-model='name'> <br/>
+
+										<button class="btn btn-primary" ng-click='updateGenre(); !showEdit'>Save Edits</button>
+									</div>
+								</td>
+							</tr>
+						</table>
+					</div>
+
+
+					<!-- Addition of Genres/ Music -->
+					<div class="text-center">
+						<button class="btn btn-primary btn-large" ng-click=showAddSection()>
+							Add {{category}}
+						</button>
+
+						<div ng-if=showAdd class="panel  panel-default" ng-controller='appCtrl'>
+							<div ng-class="panel-heading">Add 1 {{category}}</div>
+							<div class="panel-body">
+								<table class="table table-bordered">
+									<tr>
+										<td><strong>Name</strong></td>
+										<td><input type="text" ng-model="name"></td>
+									</tr>
+									<tr ng-show='showMusic'>
+										<td><strong>Rating</strong></td>
+										<td><input type="text" ng-model="rating"></td>
+									</tr>
+									<tr ng-show='showMusic'>
+										<td><strong>Genre</strong></td>
+										<td><input type="text" ng-model="genre"></td>
+									</tr>
+								</table>
+
+								<br/>
+								<button class="btn btn-primary" ng-click='save()'> Save</button>
+							</div>
+						</div>
+					</div>
+
+					<!-- navigation to other pages  -->
+					<div class="text-center">
+						<ul class="pagination">
+
+							<li class="active"><a href="/" ng-click='listMusic()'>Page 1</a></li>
+							<li><a href="/" ng-click='listGenre()'>Page 2</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-4"></div>
+		</div>
+	</div>
+</body>
+<!-- End of body -->
+
+</html>
