@@ -1,0 +1,114 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,700');
+
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  font-family: 'Roboto', sans-serif;
+}
+
+@media screen and (max-width: 400px) {
+  html {
+    font-size: 10px;
+  }
+}
+
+.container {
+  display: grid;
+  grid-template-rows: 300 1fr;
+  grid-template-columns: 1fr;
+
+  /* margin to make it look good */
+  margin: 5%;
+  -webkit-box-shadow: 6px 5px 10px -6px rgba(0, 0, 0, .4);
+  box-shadow: 6px 5px 10px -6px rgba(0, 0, 0, .4);
+  border: solid 1px #eee;
+}
+
+.title {
+  background-color: #ab14ab;
+  color: #fff;
+  padding: 1em;
+
+  grid-row: 1;
+}
+
+.italic {
+  font-style: italic;
+}
+
+.caption {
+  text-transform: uppercase;
+  font-weight: 300;
+}
+
+/* Music Panel related */
+
+.music-panel {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+li {
+  list-style: none;
+  display: inline-block;
+}
+
+.links {
+  padding: 1em;
+  text-decoration: none;
+}
+
+.link-div {
+  text-transform: uppercase;
+  padding: 1em;
+}
+
+.link-div:hover,
+.lonk-div:focus {
+  border-bottom: solid 2px #ab14ab;
+}
+
+
+/* Song Panel related */
+.song-info {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  border: solid 1px #ddd;
+  margin-bottom: 1em;
+  padding: 1em;
+  box-shadow: 1px 1px 2px rgba(0, 0, 0, .5);
+}
+
+.song-name {
+  font-size: 0.9em;
+  padding: 1px;
+}
+
+
+.song-artist {
+  font-size: 0.7em;
+}
+
+.song-rating {
+  font-size: 0.7em;
+}
+
+/* Stars related */
+.star {
+  padding: 0.2em;
+}
+
+.checked {
+  color: #ab14ab;
+}
+
+.unchecked {
+  color: #eee;
+}
