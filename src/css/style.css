@@ -52,7 +52,12 @@ html {
 
 .music-panel {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: 1fr;
+}
+
+.nav-bar {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
 }
 
 li {
@@ -63,16 +68,18 @@ li {
 .links {
   padding: 1em;
   text-decoration: none;
+  color: #ab14ab;
 }
 
 .link-div {
   text-transform: uppercase;
   padding: 1em;
+  text-align: center;
 }
 
 .link-div:hover,
 .lonk-div:focus {
-  border-bottom: solid 2px #ab14ab;
+  border-bottom: solid 4px #ab14ab;
 }
 
 
@@ -84,6 +91,10 @@ li {
   margin-bottom: 1em;
   padding: 1em;
   box-shadow: 1px 1px 2px rgba(0, 0, 0, .5);
+}
+
+.song-info:hover {
+  background-color: #f8b9f8;
 }
 
 .song-name {
@@ -103,6 +114,7 @@ li {
 /* Stars related */
 .star {
   padding: 0.2em;
+  cursor: pointer;
 }
 
 .checked {

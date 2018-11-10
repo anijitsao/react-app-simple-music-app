@@ -38,7 +38,6 @@ class MusicPanel extends Component {
         header: allConstants.header
       })
       .then((res) => {
-        console.log('response', res.data)
 
         this.setState({ songs: res.data })
       })
@@ -86,19 +85,24 @@ class MusicPanel extends Component {
     return (
       <Router>
       <div className="music-panel">
+        <nav className='nav-bar'>
           <div className="link-div">
-           <Link to="/" className="links">Songs</Link>
+            <Link to="/" className="links">Songs</Link>
            </div>
           <div className="link-div">
-          <Link to="/topfive/" className="links">Top 5</Link>
+            <Link to="/topfive/" className="links">Top 5</Link>
           </div>
-
+        </nav>
         <Switch>
           <Route exact path="/"  
           render={(props) => (
             <SongsPanel {...props} songs={songs} changeRating={this.changeRating}/>
-            )} />
-          <Route path="/topfive/" component={TopFivePanel} />
+          )} />
+
+          <Route path="/topfive/" 
+          render={(props)=>(
+            <TopFivePanel songs={songs}/>
+          )} />
         </Switch>
       </div>
       </Router>

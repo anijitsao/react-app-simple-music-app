@@ -12,7 +12,6 @@ class Song extends Component {
   }
 
   changeRating(id, rating) {
-  	console.log('Id and Rating', id, rating)
   	this.props.changeRating(id, rating)
   }
 
@@ -24,18 +23,18 @@ class Song extends Component {
 
     return (
       <div className="song-info">
-    	<div className="song-name">{name}
-    		<div className="song-artist">{`Singers: ${singers.join(', ')}`}</div>
-    	</div>
-  		<div className="song-rating">
-  		{
-  			RATING_POINTS.map((ele, index) => {
-  				return <Star key={index} 
-  				changeRating={this.changeRating.bind(this, this.props._id, ele)}
-  				rating={rating} 
-  				index={ele} />
-  			})
-  		}
+      	<div className="song-name">{name}
+      		<div className="song-artist">{`Singers: ${singers.join(', ')}`}</div>
+      	</div>
+    		<div className="song-rating">
+    		{
+    			RATING_POINTS.map((ele, index) => {
+    				return <Star key={index} 
+    				changeRating={this.changeRating.bind(this, this.props._id, ele)}
+    				rating={rating} 
+    				index={ele} />
+    			})
+    		}
   		</div>
 
     </div>

@@ -17,6 +17,10 @@ router.use(cors())
 router.use(bodyParser.json({ type: 'application/json' }))
 router.use(morgan('dev'))
 
+// most important line don't forget
+// serving static files
+router.use(express.static('../dist'))
+
 router.get('/getsongs', (req, res) => {
 	dbOps.connectDB('getSongs', req, res)
 })

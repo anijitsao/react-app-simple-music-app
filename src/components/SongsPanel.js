@@ -4,7 +4,6 @@ import React from 'react';
 import Song from './Song'
 
 const SongsPanel = ({songs, changeRating}) => {
-  console.log('Received props', songs)
   return (
   	<div className="show-songs">
   	 {
