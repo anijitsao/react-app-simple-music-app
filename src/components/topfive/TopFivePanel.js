@@ -12,7 +12,7 @@ const TopFivePanel = ({ songs }) => {
 
 
   return (
-    <div>
+    <div className="show-songs">
 
   	{
   		(topSongs.length > 0) ?

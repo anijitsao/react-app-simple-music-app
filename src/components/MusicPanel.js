@@ -3,8 +3,9 @@ import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom'
 import axios from 'axios'
 
 // components
-import SongsPanel from './SongsPanel'
-import TopFivePanel from './TopFivePanel'
+import SongsPanel from './allsongs/SongsPanel'
+import TopFivePanel from './topfive/TopFivePanel'
+import NavBar from './layout/NavBar'
 
 // Constants
 import Constants from './Constants'
@@ -17,7 +18,19 @@ class MusicPanel extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      songs: []
+      songs: [],
+      links: [{
+          to: '/',
+          desc: 'All Songs',
+          id: 1
+        },
+        {
+          to: '/topfive/',
+          desc: 'Top 5 Songs',
+          id: 2
+        }
+      ],
+      active: 1
     }
     this.changeRating = this.changeRating.bind(this)
     this.allConstants = new Constants()
@@ -79,20 +92,18 @@ class MusicPanel extends Component {
       })
   }
 
+  makeActiveLink(index) {
+    console.log('Index', index)
+
+    this.setState({active: index})
+  }
   render() {
-    let { songs } = this.state
+    let { songs, links, active } = this.state
 
     return (
       <Router>
       <div className="music-panel">
-        <nav className='nav-bar'>
-          <div className="link-div">
-            <Link to="/" className="links">Songs</Link>
-           </div>
-          <div className="link-div">
-            <Link to="/topfive/" className="links">Top 5</Link>
-          </div>
-        </nav>
+        <NavBar links={links} active={active} makeActiveLink={this.makeActiveLink.bind(this)}/>
         <Switch>
           <Route exact path="/"  
           render={(props) => (

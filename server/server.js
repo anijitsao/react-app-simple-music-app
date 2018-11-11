@@ -8,11 +8,6 @@ let route = require('./routes')
 
 // using as the middleware
 app.use('/', route);
-// app.use(express.static('./dist'))
-
-// app.get('/', (req, res)=> {
-// 	res.json({msg: "Welcome"})
-// })
 
 
 app.listen(PORT, () => {

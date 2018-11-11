@@ -13,7 +13,7 @@ html {
   font-family: 'Roboto', sans-serif;
 }
 
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 500px) {
   html {
     font-size: 10px;
   }
@@ -58,6 +58,7 @@ html {
 .nav-bar {
   display: grid;
   grid-template-columns: 1fr 1fr;
+  height: 40px;
 }
 
 li {
@@ -71,6 +72,11 @@ li {
   color: #ab14ab;
 }
 
+.links:active {
+  /*border-bottom: solid 4px #ab14ab;*/
+
+}
+
 .link-div {
   text-transform: uppercase;
   padding: 1em;
@@ -78,12 +84,74 @@ li {
 }
 
 .link-div:hover,
-.lonk-div:focus {
+.link-div:focus,
+.link-div:active {
   border-bottom: solid 4px #ab14ab;
 }
 
+.active-link {
+  border-bottom: solid 4px #ab14ab;
+}
 
 /* Song Panel related */
+.show-songs {
+  padding: 1em;
+}
+
+.song-list {
+  height: 80%;
+  overflow-y: auto;
+}
+
+/* Search bar related */
+
+.search-bar {
+  margin: 1em;
+}
+
+.search-div {
+  color: #ab14ab;
+  font-size: 1em;
+  position: relative;
+}
+
+.search-box {
+  visibility: hidden;
+  letter-spacing: 1px;
+  padding: 1em;
+  height: 40px;
+}
+
+.search-div:hover .search-box {
+  visibility: visible;
+}
+
+.search-div:hover .close-icon {
+  visibility: visible;
+}
+
+.search-icon {
+  position: absolute;
+  top: 40%;
+  left: -4px;
+}
+
+.close-icon {
+  position: absolute;
+  right: 0;
+  top: 40%;
+  visibility: hidden;
+}
+
+
+
+input[type=text] {
+  width: 100%;
+  border: 0;
+  outline: 0;
+  border-bottom: solid 2px #ab14ab;
+}
+
 .song-info {
   display: grid;
   grid-template-columns: 1fr auto;
@@ -109,6 +177,86 @@ li {
 
 .song-rating {
   font-size: 0.7em;
+}
+
+/* Popover related */
+.popover {
+  position: relative;
+  display: inline-block;
+  padding: 10px;
+}
+
+.popover-icon {
+  color: #ab14ab;
+  cursor: pointer;
+}
+
+.popover-content {
+  display: none;
+  background-color: #eee;
+  padding: 1em;
+
+  position: absolute;
+  z-index: 1;
+  top: -29px;
+  left: 23px;
+
+  border-radius: 2px;
+  font-size: 1.3rem;
+
+  width: 200px;
+  opacity: .8;
+  border: 1px solid #ddd;
+}
+
+.popover-content::before {
+  content: '';
+  border-bottom: solid 10px transparent;
+  border-top: solid 10px transparent;
+  border-right: solid 10px #eee;
+  position: absolute;
+  left: -8px;
+  top: 36%;
+
+}
+
+.popover:hover .popover-content {
+  display: block;
+}
+
+@media screen and (max-width: 500px) {
+  .popover-content::before {
+    content: '';
+    border-bottom: solid 10px transparent;
+    border-top: solid 10px transparent;
+    border-right: solid 10px #eee;
+    position: absolute;
+    left: -8px;
+    top: 25%;
+  }
+
+  .popover-content {
+    display: none;
+    background-color: #eee;
+    padding: 1em;
+
+    position: absolute;
+    z-index: 1;
+    top: -13px;
+    left: 21px;
+
+    border-radius: 2px;
+    font-size: 1.3rem;
+
+    width: 150px;
+    opacity: .8;
+    border: 1px solid #ddd;
+  }
+}
+
+.popover-info {
+  display: block;
+  font-size: .5em;
 }
 
 /* Stars related */

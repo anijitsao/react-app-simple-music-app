@@ -24,7 +24,19 @@ class Song extends Component {
     return (
       <div className="song-info">
       	<div className="song-name">{name}
-      		<div className="song-artist">{`Singers: ${singers.join(', ')}`}</div>
+
+          
+      		<div className="song-artist">{`${(movie) ? `Movie: ${movie}` : `Album: ${album}`}`}
+            <div className="popover">
+              <span className="popover-icon fa fa-info-circle"></span>
+              <div className="popover-content">
+                <span className="popover-info">{`Name: ${name}`}</span>
+                <span className="popover-info">{`Movie: ${(movie)? movie: album}`}</span>
+                <span className="popover-info">{`Genre: ${genre.join(', ')}`}</span>
+                <span className="popover-info">{`Singers: ${singers.join(', ')}`}</span>
+              </div>
+            </div>
+          </div>
       	</div>
     		<div className="song-rating">
     		{
