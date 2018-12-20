@@ -54,18 +54,18 @@ Desktop as well as Mobile version of the screenshots are given side by side.
 </p>
 
 <p> Top 5 Songs <br/> 
- <img src="screenshots/desktop 2.png" width="590px" title="Top 5 Songs screen"/>
- <img src="screenshots/mobile 2.png" width="190px" title="Top 5 Songs screen"/> 
+ <img src="screenshots/desktop 3.png" width="590px" title="Top 5 Songs screen"/>
+ <img src="screenshots/mobile 3.png" width="190px" title="Top 5 Songs screen"/> 
 </p>
 
 <p> Showing information of a song <br/> 
- <img src="screenshots/desktop 2.png" width="590px" title="Showing information of a song screen"/>
- <img src="screenshots/mobile 2.png" width="190px" title="Showing information of a song screen"/> 
+ <img src="screenshots/desktop 4.png" width="590px" title="Showing information of a song screen"/>
+ <img src="screenshots/mobile 4.png" width="190px" title="Showing information of a song screen"/> 
 </p>
 
 <p> Searching and showing searched songs <br/> 
- <img src="screenshots/desktop 2.png" width="590px" title="Searching and showing searched songs screen"/>
- <img src="screenshots/mobile 2.png" width="190px" title="Searching and showing searched songs screen"/> 
+ <img src="screenshots/desktop 5.png" width="590px" title="Searching and showing searched songs screen"/>
+ <img src="screenshots/mobile 5.png" width="190px" title="Searching and showing searched songs screen"/> 
 </p>
 
 
