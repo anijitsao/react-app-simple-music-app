@@ -274,6 +274,20 @@ audio {
   audio {
     width: 150px;
   }
+
+  .movie-info {
+    width: 20px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .movie-info {
+    width: 10px;
+  }
+
+  audio {
+    width: 90px;
+  }
 }
 
 .popover-info {

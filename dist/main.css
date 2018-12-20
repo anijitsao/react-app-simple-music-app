@@ -139,7 +139,7 @@ li {
   right: 0;
   top: 40%;
   visibility: hidden;
-  color: #ccc;
+  color: #bbb;
 }
 
 input[type=text] {
@@ -272,6 +272,20 @@ audio {
 
   audio {
     width: 150px;
+  }
+
+  .movie-info {
+    width: 20px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .movie-info {
+    width: 10px;
+  }
+
+  audio {
+    width: 90px;
   }
 }
 
