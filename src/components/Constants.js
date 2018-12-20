@@ -7,7 +7,7 @@ class Constants {
     // list of all the constants
 
     // all the URLs
-    this.url = 'http://localhost:3000'
+    this.url = 'http://localhost:3000/services'
     this.getSongs = `${this.url}/getsongs`
     this.updateRating = `${this.url}/updaterating/{id}/{rating}`
 

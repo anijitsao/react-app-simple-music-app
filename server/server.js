@@ -5,9 +5,10 @@ const PORT = 3000
 
 // dependencies to the routes file
 let route = require('./routes')
+app.use(express.static('../dist'))
 
 // using as the middleware
-app.use('/', route);
+app.use('/services', route);
 
 
 app.listen(PORT, () => {

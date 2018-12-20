@@ -2,7 +2,7 @@ import React from 'react';
 
 const TopFivePanel = ({ songs }) => {
 
-  const NUMBER_OF_TOP_SONGS = 2
+  const NUMBER_OF_TOP_SONGS = 5
 
   // sort in descending order
   let topSongs = [...songs].sort((a, b) => { return parseInt(b.rating) - parseInt(a.rating) })

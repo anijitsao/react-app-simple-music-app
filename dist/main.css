@@ -121,11 +121,11 @@ li {
   height: 40px;
 }
 
-.search-div:hover .search-box {
+.search-div:focus .search-box {
   visibility: visible;
 }
 
-.search-div:hover .close-icon {
+.search-div:focus .close-icon {
   visibility: visible;
 }
 
@@ -151,21 +151,22 @@ input[type=text] {
   border-bottom: solid 2px #ab14ab;
 }
 
+/* song info related */
 .song-info {
   display: grid;
   grid-template-columns: 1fr auto;
-  border: solid 1px #ddd;
+  border-bottom: solid 1px #ddd;
   margin-bottom: 1em;
   padding: 1em;
-  box-shadow: 1px 1px 2px rgba(0, 0, 0, .5);
 }
 
 .song-info:hover {
-  background-color: #f8b9f8;
+  background-color: #eee;
+  box-shadow: 1px 1px 15px rgba(0, 0, 0, .5);
 }
 
 .song-name {
-  font-size: 0.9em;
+  font-size: 1em;
   padding: 1px;
 }
 
