@@ -11,6 +11,8 @@ class Constants {
     this.getSongs = `${this.url}/getsongs`
     this.updateRating = `${this.url}/updaterating/{id}/{rating}`
 
+    // listen song url
+    this.songUrl = 'http://localhost:3000/songs/'
     // this.getConversation = `${this.url}/getconversation/{id}`
     // this.getRooms = `${this.url}/getrooms/{id}`
 

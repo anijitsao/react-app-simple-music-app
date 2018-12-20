@@ -3,12 +3,19 @@ import React, { Component } from 'react';
 // components
 import Star from './Star'
 
+// Constants
+import Constants from '../Constants'
+
+const PERMISSIBLE_SONG_FILE_TYPE = '.mp3'
 class Song extends Component {
 
   constructor(props) {
     super(props)
     this.RATING_POINTS = [1, 2, 3, 4, 5]
     this.changeRating = this.changeRating.bind(this)
+
+    // initialize the Constants
+    this.songUrlConstant = new Constants().songUrl
   }
 
   changeRating(id, rating) {
@@ -17,16 +24,19 @@ class Song extends Component {
 
 
   render() {
-
-    let { movie, album, name, rating, singers, genre, changeRating, url } = this.props
+    console.log('props in the song component\n', this.props)
+    let { movie, album, name, rating, singers, genre, changeRating, _id } = this.props
     const RATING_POINTS = this.RATING_POINTS
 
+    let url = `${this.songUrlConstant}${_id}${PERMISSIBLE_SONG_FILE_TYPE}`
+    console.log('url is', url)
     return (
       <div className="song-info">
         <div className="song-name">{name}
 
 
-          <div className="song-artist">{`${(movie) ? `Movie: ${movie}` : `Album: ${album}`}`}
+          <div className="song-artist">
+            <span className="movie-info">{`${(movie) ? `Movie: ${movie}` : `Album: ${album}`}`}</span>
             <div className="popover">
               <span className="popover-icon fa fa-info-circle"></span>
               <div className="popover-content">
@@ -39,7 +49,7 @@ class Song extends Component {
           </div>
         </div>
         <div className="listen-song">
-          <audio controls src={"http://localhost:3000/songs/Tum Hi Ho.mp3"} />
+          <audio controls src={url} />
         </div>
         <div className="song-rating">
           {

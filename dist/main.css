@@ -71,10 +71,6 @@ li {
   color: #ab14ab;
 }
 
-.links:active {
-  /*border-bottom: solid 4px #ab14ab;*/
-
-}
 
 .link-div {
   text-transform: uppercase;
@@ -95,6 +91,7 @@ li {
 /* Song Panel related */
 .show-songs {
   padding: 1em;
+  height: 70vh;
 }
 
 .song-list {
@@ -121,43 +118,49 @@ li {
   height: 40px;
 }
 
-.search-div:focus .search-box {
-  visibility: visible;
-}
-
-.search-div:focus .close-icon {
-  visibility: visible;
-}
-
 .search-icon {
   position: absolute;
   top: 40%;
   left: -4px;
+  color: #ab14ab;
 }
+
+.search-div:hover .search-box {
+  visibility: visible;
+}
+
+.search-div:hover .close-icon {
+  visibility: visible;
+}
+
 
 .close-icon {
   position: absolute;
   right: 0;
   top: 40%;
   visibility: hidden;
+  color: #ccc;
 }
-
-
 
 input[type=text] {
   width: 100%;
   border: 0;
   outline: 0;
+}
+
+input[type=text]:focus  {
   border-bottom: solid 2px #ab14ab;
 }
+
 
 /* song info related */
 .song-info {
   display: grid;
-  grid-template-columns: 1fr auto;
+  grid-template-columns: 1fr 1fr 1fr;
   border-bottom: solid 1px #ddd;
   margin-bottom: 1em;
   padding: 1em;
+  grid-gap: 1em;
 }
 
 .song-info:hover {
@@ -178,6 +181,15 @@ input[type=text] {
 .song-rating {
   font-size: 0.7em;
 }
+
+.movie-info {
+  width: 100px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  display: inline-block;
+}
+
 
 /* Popover related */
 .popover {
@@ -224,6 +236,11 @@ input[type=text] {
   display: block;
 }
 
+/* audio related */
+audio {
+  width: 200px;
+}
+
 @media screen and (max-width: 500px) {
   .popover-content::before {
     content: '';
@@ -252,6 +269,10 @@ input[type=text] {
     opacity: .8;
     border: 1px solid #ddd;
   }
+
+  audio {
+    width: 150px;
+  }
 }
 
 .popover-info {
@@ -271,4 +292,15 @@ input[type=text] {
 
 .unchecked {
   color: #eee;
+}
+
+
+/* scrollbar related */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 8px;
+  background-color: #ddd;
 }
