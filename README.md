@@ -18,9 +18,11 @@ This is a *responsive web application* for viewing in both Mobile and Desktop.
 - This is Simple Music Application
 - It is a Full Stack Application
 - All the song details are stored in the [MongoDB Atlas](https://www.mongodb.com/cloud/atlas). This is a *free/ shared* account on [Atlas](https://www.mongodb.com/cloud/atlas). **So Please use it wisely**
+
 - Application is loaded with the songs
 - Listening of the songs is supported
 - Searching from the list of songs is possible
+
 - Information about the song (Movie, Album, Artist) is available on click of the `i` icon
 - Changing the rating is supported
 - All the ratings are saved in the database i.e. *persistant* 
