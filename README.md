@@ -18,8 +18,9 @@ This is a *responsive web application* for viewing in both Mobile and Desktop.
 <ul>
  <li> This is Simple Music Application </li>
  <li> It is a Full Stack Application </li>
- <li> All the song details are stored in the [MongoDB Atlas](https://www.mongodb.com/cloud/atlas). This is a *free/ shared* account on [Atlas](https://www.mongodb.com/cloud/atlas). **So Please use it wisely** </li>
 </ul>
+- All the song details are stored in the [MongoDB Atlas](https://www.mongodb.com/cloud/atlas). This is a *free/ shared* account on [Atlas](https://www.mongodb.com/cloud/atlas). **So Please use it wisely** 
+
 
 <ul>
  <li> Application is loaded with the songs </li>
