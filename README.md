@@ -15,11 +15,16 @@ This is a *responsive web application* for viewing in both Mobile and Desktop.
 
 
 ## Features
-- This is Simple Users Sticker Application
+- This is Simple Music Application
 - It is a Full Stack Application
-- All the users details are stored in the [MongoDB Atlas](https://www.mongodb.com/cloud/atlas). This is a *free/ shared* account on [Atlas](https://www.mongodb.com/cloud/atlas). **So Please use it wisely**
-- Application uses *lazy loading* feature
-- Application loaded with fixed number of users. When it is scrolled to the end it will load some more users until all the users listed in the databases are loaded.
+- All the song details are stored in the [MongoDB Atlas](https://www.mongodb.com/cloud/atlas). This is a *free/ shared* account on [Atlas](https://www.mongodb.com/cloud/atlas). **So Please use it wisely**
+- Application is loaded with the songs
+- Listening of the songs is supported
+- Searching from the list of songs is possible
+- Information about the song (Movie, Album, Artist) is available on click of the `i` icon
+- Changing the rating is supported
+- All the ratings are saved in the database i.e. *persistant* 
+- Listing of Top 5 songs *based on their rating* is available
 
 
 ## Installation
@@ -36,17 +41,31 @@ This is a *responsive web application* for viewing in both Mobile and Desktop.
 ## Screenshots
 
 Some screens of the application is given below for better understanding. 
-
 Desktop as well as Mobile version of the screenshots are given side by side.
 
 <p> Initial screen <br/> 
  <img src="screenshots/desktop 1.png" width="590px" title="initial screen"/>
- <img src="screenshots/mobile 1.png" width="230px" title="initial screen"/> 
+ <img src="screenshots/mobile 1.png" width="200px" title="initial screen"/> 
 </p>
  
- <p> After scrolling to the bottom <br/> 
- <img src="screenshots/desktop 2.png" width="590px" title="After scrolling to the bottom  screen"/>
- <img src="screenshots/mobile 2.png" width="230px" title="After scrolling to the bottom  screen"/> 
+ <p> After loading the songs <br/> 
+ <img src="screenshots/desktop 2.png" width="590px" title="After loading the songs screen"/>
+ <img src="screenshots/mobile 2.png" width="200px" title="After loading the songs screen"/> 
+</p>
+
+<p> Top 5 Songs <br/> 
+ <img src="screenshots/desktop 2.png" width="590px" title="Top 5 Songs screen"/>
+ <img src="screenshots/mobile 2.png" width="200px" title="Top 5 Songs screen"/> 
+</p>
+
+<p> Showing information of a song <br/> 
+ <img src="screenshots/desktop 2.png" width="590px" title="Showing information of a song screen"/>
+ <img src="screenshots/mobile 2.png" width="200px" title="Showing information of a song screen"/> 
+</p>
+
+<p> Searching and showing searched songs <br/> 
+ <img src="screenshots/desktop 2.png" width="590px" title="Searching and showing searched songs screen"/>
+ <img src="screenshots/mobile 2.png" width="200px" title="Searching and showing searched songs screen"/> 
 </p>
 
 
