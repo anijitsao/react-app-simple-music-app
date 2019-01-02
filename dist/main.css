@@ -125,6 +125,10 @@ li {
   color: #ab14ab;
 }
 
+.search-div:hover {
+  cursor: pointer;
+}
+
 .search-div:hover .search-box {
   visibility: visible;
 }
@@ -142,11 +146,20 @@ li {
   color: #bbb;
 }
 
+.close-icon:hover {
+  cursor: pointer;
+}
+
 input[type=text] {
   width: 100%;
   border: 0;
   outline: 0;
 }
+
+input[type=text]:hover  {
+  cursor: pointer;
+}
+
 
 input[type=text]:focus  {
   border-bottom: solid 2px #ab14ab;
