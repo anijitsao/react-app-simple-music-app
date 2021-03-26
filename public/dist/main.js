@@ -2042,120 +2042,107 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-class MusicPanel extends react__WEBPACK_IMPORTED_MODULE_0__.Component {
-  // static propTypes = {
-  //   className: PropTypes.string,
-  // };
-  constructor(props) {
-    super(props);
-    this.state = {
-      songs: [],
-      links: [{
-        to: '/',
-        desc: 'All Songs',
-        id: 1
-      }, {
-        to: '/topfive/',
-        desc: 'Top 5 Songs',
-        id: 2
-      }],
-      active: 1
-    };
-    this.changeRating = this.changeRating.bind(this);
-    this.allConstants = (0,_Constants__WEBPACK_IMPORTED_MODULE_5__.default)();
-  }
+const MusicPanel = () => {
+  // Initialize initial state and its modifier function
+  const [musicData, setMusicData] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({
+    songs: [],
+    links: [{
+      to: '/',
+      desc: 'All Songs',
+      id: 1
+    }, {
+      to: '/topfive/',
+      desc: 'Top 5 Songs',
+      id: 2
+    }],
+    active: 1
+  }); // initialize all the constants
 
-  componentDidMount() {
-    this.getSongs();
-  } // get all the songs from back end
+  const allConstants = (0,_Constants__WEBPACK_IMPORTED_MODULE_5__.default)(); // get all the songs from back end 
 
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
+    getSongs();
+  }, []); // get all the songs from back end
 
-  getSongs() {
-    let allConstants = this.allConstants;
-    axios__WEBPACK_IMPORTED_MODULE_1___default()({
-      method: allConstants.method.GET,
-      url: allConstants.getSongs,
-      header: allConstants.header
-    }).then(res => {
-      this.setState({
+  const getSongs = async () => {
+    try {
+      const res = await axios__WEBPACK_IMPORTED_MODULE_1___default()({
+        method: allConstants.method.GET,
+        url: allConstants.getSongs,
+        header: allConstants.header
+      });
+      setMusicData({ ...musicData,
         songs: res.data
       });
-    }).catch(err => {
+    } catch (err) {
       console.log('Error occurred...', err);
-    });
-  } // change the rating of an song
+    }
+  }; // change the rating of an song
 
 
-  changeRating(id, rating) {
-    console.log('Code reached in the MusicPanel', id, rating);
-    let newSongs = [...this.state.songs];
+  const changeRating = (id, rating) => {
+    const newSongs = [...musicData.songs]; // put the rating in appropriate place
+
     newSongs.forEach((ele, index, arr) => {
       if (ele._id == id) {
         arr[index].rating = rating;
       }
     });
-    this.setState({
+    setMusicData({ ...musicData,
       songs: newSongs
     });
-    this.modifySong(id, rating);
-  } // modify the song by API call
+    modifySong(id, rating);
+  }; // modify the song by API call
 
 
-  modifySong(id, rating) {
-    let {
-      allConstants
-    } = this;
-    axios__WEBPACK_IMPORTED_MODULE_1___default()({
-      method: allConstants.method.PUT,
-      url: allConstants.updateRating.replace('{id}', id).replace('{rating}', rating),
-      header: allConstants.header
-    }).then(res => {
-      console.log(res.data.message);
-    }).catch(err => {
+  const modifySong = async (id, rating) => {
+    try {
+      await axios__WEBPACK_IMPORTED_MODULE_1___default()({
+        method: allConstants.method.PUT,
+        url: allConstants.updateRating.replace('{id}', id).replace('{rating}', rating),
+        header: allConstants.header
+      });
+    } catch (err) {
       console.log('Some Error occurred during the update', err);
-    });
-  }
+    }
+  };
 
-  makeActiveLink(index) {
-    console.log('Index', index);
-    this.setState({
+  const makeActiveLink = index => {
+    setMusicData({ ...musicData,
       active: index
     });
-  }
+  };
 
-  render() {
-    let {
-      songs,
-      links,
-      active
-    } = this.state;
-    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_7__.BrowserRouter, {
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
-        className: "music-panel",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_layout_NavBar__WEBPACK_IMPORTED_MODULE_4__.default, {
-          links: links,
-          active: active,
-          makeActiveLink: this.makeActiveLink.bind(this)
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_8__.Switch, {
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_8__.Route, {
-            exact: true,
-            path: "/",
-            render: props => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_allsongs_SongsPanel__WEBPACK_IMPORTED_MODULE_2__.default, { ...props,
-              songs: songs,
-              changeRating: this.changeRating
-            })
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_8__.Route, {
-            path: "/topfive/",
-            render: props => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_topfive_TopFivePanel__WEBPACK_IMPORTED_MODULE_3__.default, {
-              songs: songs
-            })
-          })]
+  const {
+    songs,
+    links,
+    active
+  } = musicData;
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_7__.BrowserRouter, {
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+      className: "music-panel",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_layout_NavBar__WEBPACK_IMPORTED_MODULE_4__.default, {
+        links: links,
+        active: active,
+        makeActiveLink: makeActiveLink
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_8__.Switch, {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_8__.Route, {
+          exact: true,
+          path: "/",
+          render: props => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_allsongs_SongsPanel__WEBPACK_IMPORTED_MODULE_2__.default, { ...props,
+            songs: songs,
+            changeRating: changeRating
+          })
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_8__.Route, {
+          path: "/topfive/",
+          render: props => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_topfive_TopFivePanel__WEBPACK_IMPORTED_MODULE_3__.default, {
+            songs: songs
+          })
         })]
-      })
-    });
-  }
-
-}
+      })]
+    })
+  });
+};
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (MusicPanel);
 

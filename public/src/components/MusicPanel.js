@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom'
+import { useEffect, useState } from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import axios from 'axios'
 
 // components
@@ -10,14 +10,11 @@ import NavBar from './layout/NavBar'
 // Constants
 import Constants from './Constants'
 
-class MusicPanel extends Component {
-  // static propTypes = {
-  //   className: PropTypes.string,
-  // };
+const MusicPanel = () => {
 
-  constructor(props) {
-    super(props);
-    this.state = {
+  // Initialize initial state and its modifier function
+  const [musicData, setMusicData] = useState(
+    {
       songs: [],
       links: [{
         to: '/',
@@ -31,94 +28,77 @@ class MusicPanel extends Component {
       }
       ],
       active: 1
-    }
-    this.changeRating = this.changeRating.bind(this)
-    this.allConstants = Constants()
-  }
+    })
 
-  componentDidMount() {
+  // initialize all the constants
+  const allConstants = Constants()
 
-
-    this.getSongs()
-  }
+  // get all the songs from back end 
+  useEffect(() => {
+    getSongs()
+  }, [])
 
   // get all the songs from back end
-  getSongs() {
-    let allConstants = this.allConstants
-    axios({
-      method: allConstants.method.GET,
-      url: allConstants.getSongs,
-      header: allConstants.header
-    })
-      .then((res) => {
-
-        this.setState({ songs: res.data })
-      })
-      .catch((err) => {
-        console.log('Error occurred...', err)
-      })
+  const getSongs = async () => {
+    try {
+      const res = await axios({ method: allConstants.method.GET, url: allConstants.getSongs, header: allConstants.header })
+      setMusicData({ ...musicData, songs: res.data })
+    } catch (err) {
+      console.log('Error occurred...', err)
+    }
   }
 
   // change the rating of an song
-  changeRating(id, rating) {
-    console.log('Code reached in the MusicPanel', id, rating)
+  const changeRating = (id, rating) => {
+    const newSongs = [...musicData.songs]
 
-    let newSongs = [...this.state.songs]
-
+    // put the rating in appropriate place
     newSongs.forEach((ele, index, arr) => {
       if (ele._id == id) {
         arr[index].rating = rating
       }
     })
-
-    this.setState({ songs: newSongs })
-    this.modifySong(id, rating)
+    setMusicData({ ...musicData, songs: newSongs })
+    modifySong(id, rating)
   }
-
 
   // modify the song by API call
-  modifySong(id, rating) {
-    let { allConstants } = this
-    axios({
-      method: allConstants.method.PUT,
-      url: allConstants.updateRating.replace('{id}', id).replace('{rating}', rating),
-      header: allConstants.header
-    })
-      .then((res) => {
-        console.log(res.data.message)
+  const modifySong = async (id, rating) => {
+    try {
+      await axios({
+        method: allConstants.method.PUT,
+        url: allConstants.updateRating.replace('{id}', id).replace('{rating}', rating),
+        header: allConstants.header
       })
-      .catch((err) => {
-        console.log('Some Error occurred during the update', err)
-      })
+    } catch (err) {
+      console.log('Some Error occurred during the update', err)
+    }
   }
 
-  makeActiveLink(index) {
-    console.log('Index', index)
-
-    this.setState({ active: index })
+  const makeActiveLink = (index) => {
+    setMusicData({ ...musicData, active: index })
   }
-  render() {
-    let { songs, links, active } = this.state
 
-    return (
-      <Router>
-        <div className="music-panel">
-          <NavBar links={links} active={active} makeActiveLink={this.makeActiveLink.bind(this)} />
-          <Switch>
-            <Route exact path="/"
-              render={(props) => (
-                <SongsPanel {...props} songs={songs} changeRating={this.changeRating} />
-              )} />
+  const { songs, links, active } = musicData
 
-            <Route path="/topfive/"
-              render={(props) => (
-                <TopFivePanel songs={songs} />
-              )} />
-          </Switch>
-        </div>
-      </Router>
-    );
-  }
+  return (
+    <Router>
+      <div className="music-panel">
+        <NavBar links={links} active={active} makeActiveLink={makeActiveLink} />
+        <Switch>
+          <Route exact path="/"
+            render={(props) => (
+              <SongsPanel {...props} songs={songs} changeRating={changeRating} />
+            )} />
+
+          <Route path="/topfive/"
+            render={(props) => (
+              <TopFivePanel songs={songs} />
+            )} />
+        </Switch>
+      </div>
+    </Router>
+  );
 }
 
 export default MusicPanel;
