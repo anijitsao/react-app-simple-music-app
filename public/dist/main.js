@@ -1999,7 +1999,9 @@ function Constants() {
       "POST": "POST",
       "GET": "GET",
       "PUT": "PUT"
-    }
+    },
+    RATING_POINTS: [1, 2, 3, 4, 5],
+    PERMISSIBLE_SONG_FILE_TYPE: '.mp3'
   };
 }
 
@@ -2215,100 +2217,80 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "../node_modules/react/index.js");
-/* harmony import */ var _Star__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Star */ "./src/components/allsongs/Star.js");
-/* harmony import */ var _Constants__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../Constants */ "./src/components/Constants.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "../node_modules/react/jsx-runtime.js");
- // components
-
+/* harmony import */ var _Star__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Star */ "./src/components/allsongs/Star.js");
+/* harmony import */ var _Constants__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../Constants */ "./src/components/Constants.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "../node_modules/react/jsx-runtime.js");
+// components
  // Constants
 
 
 
 
-const PERMISSIBLE_SONG_FILE_TYPE = '.mp3';
 
-class Song extends react__WEBPACK_IMPORTED_MODULE_0__.Component {
-  constructor(props) {
-    super(props);
-    this.RATING_POINTS = [1, 2, 3, 4, 5];
-    this.changeRating = this.changeRating.bind(this); // initialize the Constants
-
-    this.songUrlConstant = new _Constants__WEBPACK_IMPORTED_MODULE_2__.default().songUrl;
-  }
-
-  changeRating(id, rating) {
-    this.props.changeRating(id, rating);
-  }
-
-  render() {
-    console.log('props in the song component\n', this.props);
-    let {
-      movie,
-      album,
-      name,
-      rating,
-      singers,
-      genre,
-      changeRating,
-      _id
-    } = this.props;
-    const RATING_POINTS = this.RATING_POINTS;
-    let url = `${this.songUrlConstant}${_id}${PERMISSIBLE_SONG_FILE_TYPE}`;
-    console.log('url is', url);
-    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-      className: "song-info",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-        className: "song-name",
-        children: [name, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-          className: "song-artist",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
-            className: "movie-info",
-            children: `${movie ? `Movie: ${movie}` : `Album: ${album}`}`
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-            className: "popover",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
-              className: "popover-icon fa fa-info-circle"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-              className: "popover-content",
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
-                className: "popover-info",
-                children: `Name: ${name}`
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
-                className: "popover-info",
-                children: `Movie: ${movie ? movie : album}`
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
-                className: "popover-info",
-                children: `Genre: ${genre.join(', ')}`
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
-                className: "popover-info",
-                children: `Singers: ${singers.join(', ')}`
-              })]
+const Song = props => {
+  // initialize the Constants
+  const allConstants = (0,_Constants__WEBPACK_IMPORTED_MODULE_1__.default)();
+  const {
+    movie,
+    album,
+    name,
+    rating,
+    singers,
+    genre,
+    changeRating,
+    _id,
+    url
+  } = props;
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+    className: "song-info",
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+      className: "song-name",
+      children: [name, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+        className: "song-artist",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
+          className: "movie-info",
+          children: `${movie ? `Movie: ${movie}` : `Album: ${album}`}`
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+          className: "popover",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
+            className: "popover-icon fa fa-info-circle"
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+            className: "popover-content",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
+              className: "popover-info",
+              children: `Name: ${name}`
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
+              className: "popover-info",
+              children: `Movie: ${movie ? movie : album}`
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
+              className: "popover-info",
+              children: `Genre: ${genre.join(', ')}`
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
+              className: "popover-info",
+              children: `Singers: ${singers.join(', ')}`
             })]
           })]
         })]
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
-        className: "listen-song",
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("audio", {
-          controls: true,
-          src: url
-        })
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
-        className: "song-rating",
-        children: RATING_POINTS.map((ele, index) => {
-          return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_Star__WEBPACK_IMPORTED_MODULE_1__.default, {
-            changeRating: this.changeRating.bind(this, this.props._id, ele),
-            rating: rating,
-            index: ele
-          }, index);
-        })
       })]
-    });
-  }
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+      className: "listen-song",
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("audio", {
+        controls: true,
+        src: url
+      })
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+      className: "song-rating",
+      children: allConstants.RATING_POINTS.map((ele, index) => {
+        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_Star__WEBPACK_IMPORTED_MODULE_0__.default, {
+          changeRating: () => changeRating(_id, ele),
+          rating: rating,
+          index: ele
+        }, index);
+      })
+    })]
+  });
+};
 
-}
-
-;
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Song);
 
 /***/ }),

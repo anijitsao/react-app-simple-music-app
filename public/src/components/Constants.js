@@ -21,7 +21,9 @@ function Constants() {
       "POST": "POST",
       "GET": "GET",
       "PUT": "PUT"
-    }
+    },
+    RATING_POINTS: [1, 2, 3, 4, 5],
+    PERMISSIBLE_SONG_FILE_TYPE: '.mp3'
   }
 }
 
