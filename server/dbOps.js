@@ -1,6 +1,6 @@
 // dependencies
 import mongodb from 'mongodb';
-const { MongoClient, ObjectID } = mongodb
+const { MongoClient, ObjectId } = mongodb
 
 const { URI_TO_CONNECT_MONGODB, DB_NAME, COLLECTION_MUSIC, SUCCESS, SERVER_ERR } = process.env
 
@@ -10,7 +10,7 @@ const connectDbAndRunQueries = async (apiName, req, res) => {
   try {
     const client = await new MongoClient(URI_TO_CONNECT_MONGODB, { useNewUrlParser: true, useUnifiedTopology: true }).connect()
     // perform actions on the collection object
-    const collection = client.db(DB_NAME).collection("musics")
+    const collection = client.db(DB_NAME).collection(COLLECTION_MUSIC)
 
     // perform several db actions based on API names
     chooseApiAndSendResponse(apiName, collection, req, res, client)
@@ -40,7 +40,7 @@ const makeGetSongs = async (collection, req, res, client) => {
     const data = await collection.find({}).toArray()
     output = [...data] || []
   } catch (err) {
-    console.log("ERror occurred .. ", err)
+    console.log("Error occurred .. ", err)
   } finally {
     sendResponseAndCloseConnection(client, output, res)
   }
@@ -54,13 +54,10 @@ const makeUpdateRating = async (collection, req, res, client) => {
     let { id, rating } = req.params
 
     // avoid NaN while saving the rating
-    rating = (isNaN(parseInt(rating))) ? 1 : rating
+    rating = (isNaN(parseInt(rating))) ? 1 : parseInt(rating)
 
     const docs = await collection.updateOne({ _id: ObjectId(id) }, { $set: { rating } })
     output = { message: 'success' }
-
-    // prints the number of modified docs in the console
-    console.log('number of modified documents', docs.result.nModified)
   } catch (err) {
     console.log('Error occurred', err)
   } finally {

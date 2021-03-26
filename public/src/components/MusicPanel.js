@@ -20,20 +20,20 @@ class MusicPanel extends Component {
     this.state = {
       songs: [],
       links: [{
-          to: '/',
-          desc: 'All Songs',
-          id: 1
-        },
-        {
-          to: '/topfive/',
-          desc: 'Top 5 Songs',
-          id: 2
-        }
+        to: '/',
+        desc: 'All Songs',
+        id: 1
+      },
+      {
+        to: '/topfive/',
+        desc: 'Top 5 Songs',
+        id: 2
+      }
       ],
       active: 1
     }
     this.changeRating = this.changeRating.bind(this)
-    this.allConstants = new Constants()
+    this.allConstants = Constants()
   }
 
   componentDidMount() {
@@ -46,10 +46,10 @@ class MusicPanel extends Component {
   getSongs() {
     let allConstants = this.allConstants
     axios({
-        method: allConstants.method.GET,
-        url: allConstants.getSongs,
-        header: allConstants.header
-      })
+      method: allConstants.method.GET,
+      url: allConstants.getSongs,
+      header: allConstants.header
+    })
       .then((res) => {
 
         this.setState({ songs: res.data })
@@ -80,10 +80,10 @@ class MusicPanel extends Component {
   modifySong(id, rating) {
     let { allConstants } = this
     axios({
-        method: allConstants.method.PUT,
-        url: allConstants.updateRating.replace('{id}', id).replace('{rating}', rating),
-        header: allConstants.header
-      })
+      method: allConstants.method.PUT,
+      url: allConstants.updateRating.replace('{id}', id).replace('{rating}', rating),
+      header: allConstants.header
+    })
       .then((res) => {
         console.log(res.data.message)
       })
@@ -95,27 +95,27 @@ class MusicPanel extends Component {
   makeActiveLink(index) {
     console.log('Index', index)
 
-    this.setState({active: index})
+    this.setState({ active: index })
   }
   render() {
     let { songs, links, active } = this.state
 
     return (
       <Router>
-      <div className="music-panel">
-        <NavBar links={links} active={active} makeActiveLink={this.makeActiveLink.bind(this)}/>
-        <Switch>
-          <Route exact path="/"  
-          render={(props) => (
-            <SongsPanel {...props} songs={songs} changeRating={this.changeRating}/>
-          )} />
+        <div className="music-panel">
+          <NavBar links={links} active={active} makeActiveLink={this.makeActiveLink.bind(this)} />
+          <Switch>
+            <Route exact path="/"
+              render={(props) => (
+                <SongsPanel {...props} songs={songs} changeRating={this.changeRating} />
+              )} />
 
-          <Route path="/topfive/" 
-          render={(props)=>(
-            <TopFivePanel songs={songs}/>
-          )} />
-        </Switch>
-      </div>
+            <Route path="/topfive/"
+              render={(props) => (
+                <TopFivePanel songs={songs} />
+              )} />
+          </Switch>
+        </div>
       </Router>
     );
   }
