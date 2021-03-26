@@ -1,17 +1,14 @@
 // dependencies
-const mongodb = require('mongodb')
-const MongoClient = mongodb.MongoClient;
+import mongodb from 'mongodb';
+const { MongoClient, ObjectID } = mongodb
 
-// most important don't forget
-const ObjectId = mongodb.ObjectID;
-
-const URI_TO_CONNECT_MONGODB = "mongodb+srv://root:root123@anijitsmongo-mwm6l.mongodb.net/allapps";
-const DB_NAME = "allapps"
+const { URI_TO_CONNECT_MONGODB, DB_NAME, COLLECTION_MUSIC, SUCCESS, SERVER_ERR } = process.env
 
 // this function will connect db and based on API send response
-let connectDB = async (apiName, req, res) => {
+const connectDbAndRunQueries = async (apiName, req, res) => {
+
   try {
-    let client = await MongoClient.connect(URI_TO_CONNECT_MONGODB, { useNewUrlParser: true })
+    const client = await new MongoClient(URI_TO_CONNECT_MONGODB, { useNewUrlParser: true, useUnifiedTopology: true }).connect()
     // perform actions on the collection object
     const collection = client.db(DB_NAME).collection("musics")
 
@@ -23,7 +20,7 @@ let connectDB = async (apiName, req, res) => {
 }
 
 // choose the particular function for an API and process it
-let chooseApiAndSendResponse = (apiName, collection, req, res, client) => {
+const chooseApiAndSendResponse = (apiName, collection, req, res, client) => {
   switch (apiName) {
     case 'getSongs':
       makeGetSongs(collection, req, res, client)
@@ -31,54 +28,53 @@ let chooseApiAndSendResponse = (apiName, collection, req, res, client) => {
     case 'updateRating':
       makeUpdateRating(collection, req, res, client)
       break;
-
   }
 }
 
 // handle request for welcome API
-let makeGetSongs = async (collection, req, res, client) => {
+const makeGetSongs = async (collection, req, res, client) => {
 
+  // default output
   let output = { "message": "failed" }
   try {
-    let data = await collection.find({}).toArray()
+    const data = await collection.find({}).toArray()
     output = [...data] || []
-    sendOutputAndCloseConnection(client, output, res)
-
   } catch (err) {
     console.log("ERror occurred .. ", err)
-    sendOutputAndCloseConnection(client, output)
+  } finally {
+    sendResponseAndCloseConnection(client, output, res)
   }
 }
 
 // handle request for /login API
-let makeUpdateRating = async (collection, req, res, client) => {
-  let output = { message: 'failed' }
+const makeUpdateRating = async (collection, req, res, client) => {
+  const output = { message: 'failed' }
   try {
     // destructing es6 style
-    let { id, rating } = req.params
+    const { id, rating } = req.params
 
     // avoid NaN while saving the rating
     rating = (isNaN(parseInt(rating))) ? 1 : rating
 
-    let docs = await collection.updateOne({ _id: ObjectId(id) }, { $set: { rating } })
+    const docs = await collection.updateOne({ _id: ObjectId(id) }, { $set: { rating } })
     output = { message: 'success' }
 
     // prints the number of modified docs in the console
     console.log('number of modified documents', docs.result.nModified)
-    sendOutputAndCloseConnection(client, output, res)
   } catch (err) {
-    // if err just close the connection
-    sendOutputAndCloseConnection(client, output)
+    console.log('Error occurred', err)
+  } finally {
+    sendResponseAndCloseConnection(client, output, res)
   }
 }
 
-
-
-
 // function to send the response and close the db connection
-function sendOutputAndCloseConnection(client, output, res) {
+function sendResponseAndCloseConnection(client, output, res) {
   if (output && res) {
-    res.json(output)
+    console.log(`========================\nOUTPUT AS RECEIVED AND BEFORE SENDING\n==================\n`, output)
+    res.status(SUCCESS).json(output)
+  } else {
+    res.status(SERVER_ERR).json({ msg: "Internal Server Error" })
   }
 
   // close the database connection after sending the response
@@ -86,6 +82,4 @@ function sendOutputAndCloseConnection(client, output, res) {
 }
 
 // exports
-module.exports = {
-  connectDB
-}
+export { connectDbAndRunQueries }

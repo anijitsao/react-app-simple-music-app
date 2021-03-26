@@ -1,0 +1,11 @@
+{
+    "name": "react-app-simple-music-app",
+    "version": "2.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "dev": "webpack --mode development",
+        "build": "webpack --mode production"
+    }
+}
