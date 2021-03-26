@@ -1,103 +1,81 @@
-import React, { Component } from 'react';
+import { useEffect, useState } from 'react';
 
 // components
 import Song from './Song'
 import SearchBar from './SearchBar'
 
+const SongsPanel = (props) => {
 
-class SongsPanel extends Component {
-
-  constructor(props) {
-    super(props)
-    console.log('props here', this.props)
-    this.state = {
-      songs: this.props.songs,
+  // Initialize the initial state and its modifier function
+  const [songData, setSongData] = useState(
+    {
+      songs: [],
       searchText: '',
       emptyMessage: 'List of the songs is populated...'
-    }
+    })
 
-    // to help the garbage collector
-    this.changeSearchText = this.changeSearchText.bind(this)
-    this.clearSerchText = this.clearSerchText.bind(this)
-    this.checkIfEnterPressed = this.checkIfEnterPressed.bind(this)
-  }
+  useEffect(() => {
+    setSongData({ ...songData, songs: props.songs })
+  }, [props.songs.length])
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.songs.length != this.props.songs.length) {
-      this.setState({ songs: nextProps.songs })
-    }
-  }
-
-  changeSearchText(event) {
-    this.setState({ searchText: event.target.value })
+  const changeSearchText = (e) => {
+    setSongData({ ...songData, searchText: e.target.value })
   }
 
   // when the X is pressed
-  clearSerchText() {
-    this.setState({ searchText: '' })
+  const clearSerchText = () => {
+    setSongData({ ...songData, searchText: '' })
   }
 
-  checkIfEnterPressed(event) {
-    event.persist()
-
-    if (event.which == 13 || event.keyCode == 13) {
-      this.modifySongs()
+  // when ENTER key is pressed search the songs list
+  const checkIfEnterPressed = (e) => {
+    if (e.which == 13 || e.keyCode == 13) {
+      modifySongs()
     }
   }
 
   // modify the list of songs based on searched text
-  modifySongs() {
-    let toBeSearchedSongs = [...this.props.songs]
-    let searchValue = this.state.searchText.toLowerCase()
-    // console.log('search value is', searchValue)
+  const modifySongs = () => {
+    let toBeSearchedSongs = [...props.songs]
+    const searchValue = songData.searchText.toLowerCase()
 
+    // if the user is searching something only then 
     if (searchValue != '') {
-      // if the user is searching something only then 
       toBeSearchedSongs = toBeSearchedSongs.filter((song) => {
 
         let songAttrs = `${song.name}, ${song.genre.join(', ')}, ${song.singers.join(', ')}, ${(song.movie) ? song.movie : song.album}`
         songAttrs = songAttrs.toLowerCase()
-        // console.log('attrs:', songAttrs, songAttrs.includes(searchValue))
-
         return songAttrs.includes(searchValue)
       })
     }
 
-    this.setState({ songs: toBeSearchedSongs })
-
-    if (toBeSearchedSongs.length == 0) {
-      this.setState({ emptyMessage: 'Not found try with something else' })
-    }
+    // set the state variable accordingly
+    setSongData({ ...songData, songs: toBeSearchedSongs, emptyMessage: toBeSearchedSongs.length == 0 ? 'Not found try with something else' : songData.emptyMessage })
   }
 
-  render() {
+  const { songs, searchText, emptyMessage } = songData
+  const { changeRating } = props
 
-    let { songs, searchText, emptyMessage } = this.state
-    let { changeRating } = this.props
+  return (
+    <div className="show-songs">
+      <SearchBar
+        searchText={searchText}
+        clearSerchText={clearSerchText}
+        checkIfEnterPressed={checkIfEnterPressed}
+        changeSearchText={changeSearchText} />
 
-    return (
-      <div className="show-songs">
-	  		<SearchBar 
-	  		searchText={searchText}
-	  		clearSerchText={this.clearSerchText}
-	  		checkIfEnterPressed={this.checkIfEnterPressed}
-	  		changeSearchText={this.changeSearchText}/>
-	  	 
-       <div className="song-list">
-         {
-  	  	 	(songs.length > 0) ?
-  		  	 	songs.map((song)=> {
-  		  	 		return <Song key={song._id} {...song} changeRating={changeRating}/>
-  		  	 	})
-  	  	 	:
-  	  	 		emptyMessage
-  	  	 }
-       </div>
-  	</div>
-    );
-  }
+      <div className="song-list">
+        {
+          (songs.length > 0) ?
+            songs.map((song) => {
+              return <Song key={song._id} {...song} changeRating={changeRating} />
+            })
+            :
+            emptyMessage
+        }
+      </div>
+    </div>
+  );
 };
-
-
 
 export default SongsPanel;

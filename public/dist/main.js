@@ -2304,106 +2304,86 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-class SongsPanel extends react__WEBPACK_IMPORTED_MODULE_0__.Component {
-  constructor(props) {
-    super(props);
-    console.log('props here', this.props);
-    this.state = {
-      songs: this.props.songs,
-      searchText: '',
-      emptyMessage: 'List of the songs is populated...'
-    }; // to help the garbage collector
-
-    this.changeSearchText = this.changeSearchText.bind(this);
-    this.clearSerchText = this.clearSerchText.bind(this);
-    this.checkIfEnterPressed = this.checkIfEnterPressed.bind(this);
-  }
-
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.songs.length != this.props.songs.length) {
-      this.setState({
-        songs: nextProps.songs
-      });
-    }
-  }
-
-  changeSearchText(event) {
-    this.setState({
-      searchText: event.target.value
+const SongsPanel = props => {
+  // Initialize the initial state and its modifier function
+  const [songData, setSongData] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({
+    songs: [],
+    searchText: '',
+    emptyMessage: 'List of the songs is populated...'
+  });
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
+    setSongData({ ...songData,
+      songs: props.songs
     });
-  } // when the X is pressed
+  }, [props.songs.length]);
+
+  const changeSearchText = e => {
+    setSongData({ ...songData,
+      searchText: e.target.value
+    });
+  }; // when the X is pressed
 
 
-  clearSerchText() {
-    this.setState({
+  const clearSerchText = () => {
+    setSongData({ ...songData,
       searchText: ''
     });
-  }
+  }; // when ENTER key is pressed search the songs list
 
-  checkIfEnterPressed(event) {
-    event.persist();
 
-    if (event.which == 13 || event.keyCode == 13) {
-      this.modifySongs();
+  const checkIfEnterPressed = e => {
+    if (e.which == 13 || e.keyCode == 13) {
+      modifySongs();
     }
-  } // modify the list of songs based on searched text
+  }; // modify the list of songs based on searched text
 
 
-  modifySongs() {
-    let toBeSearchedSongs = [...this.props.songs];
-    let searchValue = this.state.searchText.toLowerCase(); // console.log('search value is', searchValue)
+  const modifySongs = () => {
+    let toBeSearchedSongs = [...props.songs];
+    const searchValue = songData.searchText.toLowerCase(); // if the user is searching something only then 
 
     if (searchValue != '') {
-      // if the user is searching something only then 
       toBeSearchedSongs = toBeSearchedSongs.filter(song => {
         let songAttrs = `${song.name}, ${song.genre.join(', ')}, ${song.singers.join(', ')}, ${song.movie ? song.movie : song.album}`;
-        songAttrs = songAttrs.toLowerCase(); // console.log('attrs:', songAttrs, songAttrs.includes(searchValue))
-
+        songAttrs = songAttrs.toLowerCase();
         return songAttrs.includes(searchValue);
       });
     }
 
-    this.setState({
-      songs: toBeSearchedSongs
-    });
+    setSongData({ ...songData,
+      songs: toBeSearchedSongs,
+      emptyMessage: toBeSearchedSongs.length == 0 ? 'Not found try with something else' : songData.emptyMessage
+    }); // if (toBeSearchedSongs.length == 0) {
+    //   setSongData({ ...songData, emptyMessage: 'Not found try with something else' })
+    // }
+  };
 
-    if (toBeSearchedSongs.length == 0) {
-      this.setState({
-        emptyMessage: 'Not found try with something else'
-      });
-    }
-  }
+  const {
+    songs,
+    searchText,
+    emptyMessage
+  } = songData;
+  const {
+    changeRating
+  } = props;
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+    className: "show-songs",
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_SearchBar__WEBPACK_IMPORTED_MODULE_2__.default, {
+      searchText: searchText,
+      clearSerchText: clearSerchText,
+      checkIfEnterPressed: checkIfEnterPressed,
+      changeSearchText: changeSearchText
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+      className: "song-list",
+      children: songs.length > 0 ? songs.map(song => {
+        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_Song__WEBPACK_IMPORTED_MODULE_1__.default, { ...song,
+          changeRating: changeRating
+        }, song._id);
+      }) : emptyMessage
+    })]
+  });
+};
 
-  render() {
-    let {
-      songs,
-      searchText,
-      emptyMessage
-    } = this.state;
-    let {
-      changeRating
-    } = this.props;
-    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-      className: "show-songs",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_SearchBar__WEBPACK_IMPORTED_MODULE_2__.default, {
-        searchText: searchText,
-        clearSerchText: this.clearSerchText,
-        checkIfEnterPressed: this.checkIfEnterPressed,
-        changeSearchText: this.changeSearchText
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
-        className: "song-list",
-        children: songs.length > 0 ? songs.map(song => {
-          return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_Song__WEBPACK_IMPORTED_MODULE_1__.default, { ...song,
-            changeRating: changeRating
-          }, song._id);
-        }) : emptyMessage
-      })]
-    });
-  }
-
-}
-
-;
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (SongsPanel);
 
 /***/ }),
