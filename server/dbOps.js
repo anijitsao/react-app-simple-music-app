@@ -48,10 +48,10 @@ const makeGetSongs = async (collection, req, res, client) => {
 
 // handle request for /login API
 const makeUpdateRating = async (collection, req, res, client) => {
-  const output = { message: 'failed' }
+  let output = { message: 'failed' }
   try {
     // destructing es6 style
-    const { id, rating } = req.params
+    let { id, rating } = req.params
 
     // avoid NaN while saving the rating
     rating = (isNaN(parseInt(rating))) ? 1 : rating
