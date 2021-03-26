@@ -3,20 +3,33 @@
 * {
   margin: 0;
   padding: 0;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
 
-html {
-  font-size: 16px;
-  font-family: 'Roboto', sans-serif;
+:root {
+  --font-small: 10px;
+  --font-regular: 16px;
+  --font-family: 'Roboto', sans-serif;
+
+  --font-weight-regular: 300;
+ 
+  --darker-grey: #4d4c4c;
+  --dark-grey: #ddd;
+  --light-grey: #eee;
+  --lighter-grey: #fff;
+
+  --light-purple: #ab14ab;
+
+  --light-red: #f02323;
+  --lighter-red: #e31a1a;
+
+  --light-shadow: rgba(0, 0, 0, 0.4);
+  --lighter-shadow: rgba(0, 0, 0, 0.2);
 }
 
-@media screen and (max-width: 500px) {
-  html {
-    font-size: 10px;
-  }
+body {
+  font-size: var(--font-regular);
+  font-family: var(--font-family);
 }
 
 .container {
@@ -25,17 +38,16 @@ html {
   grid-template-columns: 1fr;
 
   /* margin to make it look good */
-  margin: 5%;
-  -webkit-box-shadow: 6px 5px 10px -6px rgba(0, 0, 0, .4);
-  box-shadow: 6px 5px 10px -6px rgba(0, 0, 0, .4);
-  border: solid 1px #eee;
+  margin: 5% auto;
+  width: 70vw;
+  box-shadow: 6px 5px 10px -6px var(--light-shadow);
+  border: solid 1px var(--light-grey);
 }
 
 .title {
-  background-color: #ab14ab;
-  color: #fff;
+  background-color: var(--light-purple);
+  color: var(--lighter-grey);
   padding: 1em;
-
   grid-row: 1;
 }
 
@@ -45,11 +57,10 @@ html {
 
 .caption {
   text-transform: uppercase;
-  font-weight: 300;
+  font-weight: var(--font-weight-regular);
 }
 
 /* Music Panel related */
-
 .music-panel {
   display: grid;
   grid-template-columns: 1fr;
@@ -69,9 +80,8 @@ li {
 .links {
   padding: 1em;
   text-decoration: none;
-  color: #ab14ab;
+  color: var(--light-purple);
 }
-
 
 .link-div {
   text-transform: uppercase;
@@ -82,11 +92,11 @@ li {
 .link-div:hover,
 .link-div:focus,
 .link-div:active {
-  border-bottom: solid 4px #ab14ab;
+  border-bottom: solid 4px var(--light-purple);
 }
 
 .active-link {
-  border-bottom: solid 4px #ab14ab;
+  border-bottom: solid 4px var(--light-purple);
 }
 
 /* Song Panel related */
@@ -101,13 +111,12 @@ li {
 }
 
 /* Search bar related */
-
 .search-bar {
   margin: 1em;
 }
 
 .search-div {
-  color: #ab14ab;
+  color: var(--light-purple);
   font-size: 1em;
   position: relative;
 }
@@ -123,7 +132,7 @@ li {
   position: absolute;
   top: 40%;
   left: -4px;
-  color: #ab14ab;
+  color: var(--light-purple);
 }
 
 .search-div:hover {
@@ -138,13 +147,12 @@ li {
   visibility: visible;
 }
 
-
 .close-icon {
   position: absolute;
   right: 0;
   top: 40%;
   visibility: hidden;
-  color: #bbb;
+  color: var(--darker-grey);
 }
 
 .close-icon:hover {
@@ -161,32 +169,29 @@ input[type=text]:hover  {
   cursor: pointer;
 }
 
-
 input[type=text]:focus  {
-  border-bottom: solid 2px #ab14ab;
+  border-bottom: solid 2px var(--light-purple);
 }
-
 
 /* song info related */
 .song-info {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  border-bottom: solid 1px #ddd;
+  border-bottom: solid 1px var(--light-grey);
   margin-bottom: 1em;
   padding: 1em;
   grid-gap: 1em;
 }
 
 .song-info:hover {
-  background-color: #eee;
-  box-shadow: 1px 1px 15px rgba(0, 0, 0, .5);
+  opacity: 1;
+  box-shadow: 1px 1px 6px var(--light-shadow);
 }
 
 .song-name {
   font-size: 1em;
   padding: 1px;
 }
-
 
 .song-artist {
   font-size: 0.7em;
@@ -204,7 +209,6 @@ input[type=text]:focus  {
   display: inline-block;
 }
 
-
 /* Popover related */
 .popover {
   position: relative;
@@ -213,13 +217,13 @@ input[type=text]:focus  {
 }
 
 .popover-icon {
-  color: #ab14ab;
+  color: var(--light-purple);
   cursor: pointer;
 }
 
 .popover-content {
   display: none;
-  background-color: #eee;
+  background-color: var(--lighter-grey);
   padding: 1em;
 
   position: absolute;
@@ -232,18 +236,18 @@ input[type=text]:focus  {
 
   width: 200px;
   opacity: .8;
-  border: 1px solid #ddd;
+  border: 1px solid var(--dark-grey);
 }
 
 .popover-content::before {
   content: '';
   border-bottom: solid 10px transparent;
   border-top: solid 10px transparent;
-  border-right: solid 10px #eee;
+  border-right: solid 10px var(--lighter-grey);
+
   position: absolute;
   left: -8px;
   top: 36%;
-
 }
 
 .popover:hover .popover-content {
@@ -256,23 +260,19 @@ audio {
 }
 
 @media screen and (max-width: 500px) {
+  body {
+    font-size: var(--font-small);
+  }
+  .container {
+    width: 100vw;
+  }
+
   .popover-content::before {
-    content: '';
-    border-bottom: solid 10px transparent;
-    border-top: solid 10px transparent;
-    border-right: solid 10px #eee;
-    position: absolute;
     left: -8px;
     top: 25%;
   }
 
   .popover-content {
-    display: none;
-    background-color: #eee;
-    padding: 1em;
-
-    position: absolute;
-    z-index: 1;
     top: -13px;
     left: 21px;
 
@@ -281,7 +281,7 @@ audio {
 
     width: 150px;
     opacity: .8;
-    border: 1px solid #ddd;
+    border: 1px solid var(--light-grey);
   }
 
   audio {
@@ -315,11 +315,11 @@ audio {
 }
 
 .checked {
-  color: #ab14ab;
+  color: var(--light-purple);
 }
 
 .unchecked {
-  color: #eee;
+  color: var(--light-grey);
 }
 
 
@@ -330,5 +330,5 @@ audio {
 
 ::-webkit-scrollbar-thumb {
   border-radius: 8px;
-  background-color: #ddd;
+  background-color: var(--light-grey);
 }
