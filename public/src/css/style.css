@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,700');
+@import url("https://fonts.googleapis.com/css?family=Roboto:300,400,700");
 
 * {
   margin: 0;
@@ -9,10 +9,10 @@
 :root {
   --font-small: 10px;
   --font-regular: 16px;
-  --font-family: 'Roboto', sans-serif;
+  --font-family: "Roboto", sans-serif;
 
   --font-weight-regular: 300;
- 
+
   --darker-grey: #4d4c4c;
   --dark-grey: #ddd;
   --light-grey: #eee;
@@ -159,17 +159,17 @@ li {
   cursor: pointer;
 }
 
-input[type=text] {
+input[type="text"] {
   width: 100%;
   border: 0;
   outline: 0;
 }
 
-input[type=text]:hover  {
+input[type="text"]:hover {
   cursor: pointer;
 }
 
-input[type=text]:focus  {
+input[type="text"]:focus {
   border-bottom: solid 2px var(--light-purple);
 }
 
@@ -235,12 +235,12 @@ input[type=text]:focus  {
   font-size: 1.3rem;
 
   width: 200px;
-  opacity: .8;
+  opacity: 0.8;
   border: 1px solid var(--dark-grey);
 }
 
 .popover-content::before {
-  content: '';
+  content: "";
   border-bottom: solid 10px transparent;
   border-top: solid 10px transparent;
   border-right: solid 10px var(--lighter-grey);
@@ -280,7 +280,7 @@ audio {
     font-size: 1.3rem;
 
     width: 150px;
-    opacity: .8;
+    opacity: 0.8;
     border: 1px solid var(--light-grey);
   }
 
@@ -305,7 +305,7 @@ audio {
 
 .popover-info {
   display: block;
-  font-size: .5em;
+  font-size: 0.5em;
 }
 
 /* Stars related */
@@ -321,7 +321,6 @@ audio {
 .unchecked {
   color: var(--light-grey);
 }
-
 
 /* scrollbar related */
 ::-webkit-scrollbar {

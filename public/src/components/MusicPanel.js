@@ -1,39 +1,38 @@
-import { useEffect, useState } from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
-import axios from 'axios'
+import { useEffect, useState } from "react"
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom"
+import axios from "axios"
 
 // components
-import SongsPanel from './allsongs/SongsPanel'
-import TopFivePanel from './topfive/TopFivePanel'
-import NavBar from './layout/NavBar'
+import SongsPanel from "./allsongs/SongsPanel"
+import TopFivePanel from "./topfive/TopFivePanel"
+import NavBar from "./layout/NavBar"
 
 // Constants
-import Constants from './Constants'
+import Constants from "./Constants"
 
 const MusicPanel = () => {
-
   // Initialize initial state and its modifier function
-  const [musicData, setMusicData] = useState(
-    {
-      songs: [],
-      links: [{
-        to: '/',
-        desc: 'All Songs',
-        id: 1
+  const [musicData, setMusicData] = useState({
+    songs: [],
+    links: [
+      {
+        to: "/",
+        desc: "All Songs",
+        id: 1,
       },
       {
-        to: '/topfive/',
-        desc: 'Top 5 Songs',
-        id: 2
-      }
-      ],
-      active: 1
-    })
+        to: "/topfive/",
+        desc: "Top 5 Songs",
+        id: 2,
+      },
+    ],
+    active: 1,
+  })
 
   // initialize all the constants
   const allConstants = Constants()
 
-  // get all the songs from back end 
+  // get all the songs from back end
   useEffect(() => {
     getSongs()
   }, [])
@@ -41,10 +40,14 @@ const MusicPanel = () => {
   // get all the songs from back end
   const getSongs = async () => {
     try {
-      const res = await axios({ method: allConstants.method.GET, url: allConstants.getSongs, header: allConstants.header })
+      const res = await axios({
+        method: allConstants.method.GET,
+        url: allConstants.getSongs,
+        header: allConstants.header,
+      })
       setMusicData({ ...musicData, songs: res.data })
     } catch (err) {
-      console.log('Error occurred...', err)
+      console.log("Error occurred...", err)
     }
   }
 
@@ -67,11 +70,13 @@ const MusicPanel = () => {
     try {
       await axios({
         method: allConstants.method.PUT,
-        url: allConstants.updateRating.replace('{id}', id).replace('{rating}', rating),
-        header: allConstants.header
+        url: allConstants.updateRating
+          .replace("{id}", id)
+          .replace("{rating}", rating),
+        header: allConstants.header,
       })
     } catch (err) {
-      console.log('Some Error occurred during the update', err)
+      console.log("Some Error occurred during the update", err)
     }
   }
 
@@ -86,19 +91,26 @@ const MusicPanel = () => {
       <div className="music-panel">
         <NavBar links={links} active={active} makeActiveLink={makeActiveLink} />
         <Switch>
-          <Route exact path="/"
+          <Route
+            exact
+            path="/"
             render={(props) => (
-              <SongsPanel {...props} songs={songs} changeRating={changeRating} />
-            )} />
+              <SongsPanel
+                {...props}
+                songs={songs}
+                changeRating={changeRating}
+              />
+            )}
+          />
 
-          <Route path="/topfive/"
-            render={(props) => (
-              <TopFivePanel songs={songs} />
-            )} />
+          <Route
+            path="/topfive/"
+            render={(props) => <TopFivePanel songs={songs} />}
+          />
         </Switch>
       </div>
     </Router>
-  );
+  )
 }
 
-export default MusicPanel;
+export default MusicPanel
