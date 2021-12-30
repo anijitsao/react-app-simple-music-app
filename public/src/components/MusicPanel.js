@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom"
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 import axios from "axios"
 
 // components
@@ -90,24 +90,14 @@ const MusicPanel = () => {
     <Router>
       <div className="music-panel">
         <NavBar links={links} active={active} makeActiveLink={makeActiveLink} />
-        <Switch>
+        <Routes>
           <Route
-            exact
             path="/"
-            render={(props) => (
-              <SongsPanel
-                {...props}
-                songs={songs}
-                changeRating={changeRating}
-              />
-            )}
+            element={<SongsPanel songs={songs} changeRating={changeRating} />}
           />
 
-          <Route
-            path="/topfive/"
-            render={(props) => <TopFivePanel songs={songs} />}
-          />
-        </Switch>
+          <Route path="/topfive/" element={<TopFivePanel songs={songs} />} />
+        </Routes>
       </div>
     </Router>
   )
