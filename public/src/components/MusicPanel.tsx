@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import axios, { AxiosResponse } from "axios";
 
 // components
 import SongsPanel from "./allsongs/SongsPanel";

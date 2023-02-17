@@ -7,7 +7,7 @@ combined to get a single build for production purpose using [Webpack 5](https://
 
 ES6 `module` creation along with `import /export` is used. [tsc](https://www.typescriptlang.org/docs/handbook/compiler-options.html) is used to _transpile_ all [JSX](https://reactjs.org/docs/jsx-in-depth.html) code to vanilla JavaScript code. To install all the dependecies `npm` is used.
 
-For UI creation [HTML5](https://www.w3schools.com/html/html5_intro.asp) and [CSS3](https://www.w3schools.com/css/) are used. [Grid](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout), the new feature of [CSS3](https://www.w3schools.com/css/) is used for layout creation purpose.
+For UI creation [HTML5](https://www.w3schools.com/html/html5_intro.asp) and [CSS3](https://www.w3schools.com/css/) are used.
 
 Back end is implemented using [Node JS](https://nodejs.org/en/docs/), [Express JS](https://expressjs.com/en/api.html) and [MongoDB](https://docs.mongodb.com/). [Atlas](https://www.mongodb.com/cloud/atlas), the _Cloud_ version of [MongoDB](https://docs.mongodb.com/)
 is used.
@@ -16,31 +16,31 @@ This is a _responsive web application_ for viewing in both Mobile and Desktop.
 
 ## Features
 
-- Code is rewritten with [React JS 18](https://reactjs.org/docs/getting-started.html), latest version of [Node JS](https://nodejs.org/en/docs/) and [Typescript](https://www.typescriptlang.org/)
-- Latest features of JavaScript i.e. ES6, ES7, ES8 is used
-- [React JS Hooks](https://reactjs.org/docs/hooks-intro.html) are used with Functional components
-- ES8 `async/await` is used
-- Routing is rewritten using [React Router v6](https://reactrouter.com/docs/en/v6)
+1. Code is rewritten with [React JS 18](https://reactjs.org/docs/getting-started.html), latest version of [Node JS](https://nodejs.org/en/docs/) and [Typescript](https://www.typescriptlang.org/)
+2. Latest features of JavaScript i.e. ESNext used
+3. [React JS Hooks](https://reactjs.org/docs/hooks-intro.html) are used with Functional components
+4. ES8 `async/await` is used
+5. Routing is rewritten using [React Router v6](https://reactrouter.com/docs/en/v6)
 
 <br/>
 
-<ul>
+<ol start=6>
  <li> This is Simple Music Application </li>
  <li> It is a Full Stack Application </li>
-</ul>
+</ol>
 
-- All the song details are stored in the [MongoDB Atlas](https://www.mongodb.com/cloud/atlas). This is a _free/ shared_ account on [Atlas](https://www.mongodb.com/cloud/atlas). **So Please use it wisely**
+9. All the song details are stored in the [MongoDB Atlas](https://www.mongodb.com/cloud/atlas). This is a _free/ shared_ account on [Atlas](https://www.mongodb.com/cloud/atlas). **So Please use it wisely**
 
-<ul>
+<ol start=10>
  <li> Application is loaded with the songs </li>
  <li> Listening of the songs is supported </li>
  <li> Searching from the list of songs is possible </li>
-</ul>
+</ol>
 
-- Information about the song (Movie, Album, Artist) is available on click of the `i` icon
-- Changing the rating is supported
-- All the ratings are saved in the database i.e. _persistant_
-- Listing of Top 5 songs _based on their rating_ is available
+13. Information about the song (Movie, Album, Artist) is available on click of the `i` icon
+14. Changing the rating is supported
+15. All the ratings are saved in the database i.e. _persistant_
+16. Listing of Top 5 songs _based on their rating_ is available
 
 ## Installation
 
