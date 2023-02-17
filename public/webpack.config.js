@@ -11,7 +11,7 @@ module.exports = {
   entry: "./index.tsx",
   output: {
     path: path.join(__dirname, "./dist"),
-    clean: true,
+    // clean: true,
   },
   devtool: "source-map",
   module: {
