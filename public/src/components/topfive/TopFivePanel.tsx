@@ -1,14 +1,14 @@
 // TopFivePanel component
 export default ({ songs }) => {
-  const NUMBER_OF_TOP_SONGS = 5
+  const NUMBER_OF_TOP_SONGS = 5;
 
   // sort in descending order
   let topSongs = [...songs].sort((a, b) => {
-    return parseInt(b.rating) - parseInt(a.rating)
-  })
+    return parseInt(b.rating) - parseInt(a.rating);
+  });
 
   // show upto certain number
-  topSongs = topSongs.slice(0, NUMBER_OF_TOP_SONGS)
+  topSongs = topSongs.slice(0, NUMBER_OF_TOP_SONGS);
 
   return (
     <div className="show-songs">
@@ -23,9 +23,9 @@ export default ({ songs }) => {
                   )}`}</div>
                 </div>
               </div>
-            )
+            );
           })
         : "List of the songs is populated..."}
     </div>
-  )
-}
+  );
+};

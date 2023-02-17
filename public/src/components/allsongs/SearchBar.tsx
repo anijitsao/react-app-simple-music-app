@@ -1,7 +1,7 @@
 // SearchBar component
 export default (props) => {
   const { changeSearchText, clearSerchText, searchText, checkIfEnterPressed } =
-    props
+    props;
 
   return (
     <div className="search-bar">
@@ -21,5 +21,5 @@ export default (props) => {
         ></span>
       </div>
     </div>
-  )
-}
+  );
+};

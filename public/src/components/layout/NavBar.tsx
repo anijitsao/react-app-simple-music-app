@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom"
+import { Link } from "react-router-dom";
 
 export default ({ links, makeActiveLink, active }) => {
   return (
@@ -9,15 +9,15 @@ export default ({ links, makeActiveLink, active }) => {
             key={link.id}
             className={link.id == active ? "link-div active-link" : "link-div"}
             onClick={() => {
-              makeActiveLink(link.id)
+              makeActiveLink(link.id);
             }}
           >
             <Link to={link.to} className="links">
               {link.desc}
             </Link>
           </div>
-        )
+        );
       })}
     </nav>
-  )
-}
+  );
+};

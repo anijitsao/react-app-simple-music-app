@@ -1,14 +1,14 @@
 // components
-import Star from "./Star"
+import Star from "./Star";
 
 // Constants
-import Constants from "../Constants"
+import Constants from "../Constants";
 
 const Song = (props) => {
   // initialize the Constants
-  const allConstants = Constants()
+  const allConstants = Constants();
   const { movie, album, name, rating, singers, genre, changeRating, _id, url } =
-    props
+    props;
 
   return (
     <div className="song-info">
@@ -48,11 +48,11 @@ const Song = (props) => {
               rating={rating}
               index={ele}
             />
-          )
+          );
         })}
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Song
+export default Song;

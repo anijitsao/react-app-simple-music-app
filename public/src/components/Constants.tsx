@@ -1,6 +1,6 @@
 // all the constants
 function Constants() {
-  const url = "http://localhost:3000/services"
+  const url = "http://localhost:3000/services";
 
   return {
     // all the URLs
@@ -22,7 +22,7 @@ function Constants() {
     },
     RATING_POINTS: [1, 2, 3, 4, 5],
     PERMISSIBLE_SONG_FILE_TYPE: ".mp3",
-  }
+  };
 }
 
-export default Constants
+export default Constants;

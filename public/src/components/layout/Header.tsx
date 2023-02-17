@@ -6,5 +6,5 @@ export default () => {
         Simple <strong>Music App</strong>
       </span>
     </div>
-  )
-}
+  );
+};

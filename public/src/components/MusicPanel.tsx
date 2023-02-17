@@ -1,14 +1,14 @@
-import { useEffect, useState } from "react"
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
-import axios from "axios"
+import { useEffect, useState } from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import axios from "axios";
 
 // components
-import SongsPanel from "./allsongs/SongsPanel"
-import TopFivePanel from "./topfive/TopFivePanel"
-import NavBar from "./layout/NavBar"
+import SongsPanel from "./allsongs/SongsPanel";
+import TopFivePanel from "./topfive/TopFivePanel";
+import NavBar from "./layout/NavBar";
 
 // Constants
-import Constants from "./Constants"
+import Constants from "./Constants";
 
 const MusicPanel = () => {
   // Initialize initial state and its modifier function
@@ -27,15 +27,15 @@ const MusicPanel = () => {
       },
     ],
     active: 1,
-  })
+  });
 
   // initialize all the constants
-  const allConstants = Constants()
+  const allConstants = Constants();
 
   // get all the songs from back end
   useEffect(() => {
-    getSongs()
-  }, [])
+    getSongs();
+  }, []);
 
   // get all the songs from back end
   const getSongs = async () => {
@@ -44,26 +44,26 @@ const MusicPanel = () => {
         method: allConstants.method.GET,
         url: allConstants.getSongs,
         header: allConstants.header,
-      })
-      setMusicData({ ...musicData, songs: res.data })
+      });
+      setMusicData({ ...musicData, songs: res.data });
     } catch (err) {
-      console.log("Error occurred...", err)
+      console.log("Error occurred...", err);
     }
-  }
+  };
 
   // change the rating of an song
   const changeRating = (id, rating) => {
-    const newSongs = [...musicData.songs]
+    const newSongs = [...musicData.songs];
 
     // put the rating in appropriate place
     newSongs.forEach((ele, index, arr) => {
       if (ele._id == id) {
-        arr[index].rating = rating
+        arr[index].rating = rating;
       }
-    })
-    setMusicData({ ...musicData, songs: newSongs })
-    modifySong(id, rating)
-  }
+    });
+    setMusicData({ ...musicData, songs: newSongs });
+    modifySong(id, rating);
+  };
 
   // modify the song by API call
   const modifySong = async (id, rating) => {
@@ -74,17 +74,17 @@ const MusicPanel = () => {
           .replace("{id}", id)
           .replace("{rating}", rating),
         header: allConstants.header,
-      })
+      });
     } catch (err) {
-      console.log("Some Error occurred during the update", err)
+      console.log("Some Error occurred during the update", err);
     }
-  }
+  };
 
   const makeActiveLink = (index) => {
-    setMusicData({ ...musicData, active: index })
-  }
+    setMusicData({ ...musicData, active: index });
+  };
 
-  const { songs, links, active } = musicData
+  const { songs, links, active } = musicData;
 
   return (
     <Router>
@@ -100,7 +100,7 @@ const MusicPanel = () => {
         </Routes>
       </div>
     </Router>
-  )
-}
+  );
+};
 
-export default MusicPanel
+export default MusicPanel;
