@@ -1,0 +1,10 @@
+{
+  "compilerOptions": {
+    "rootDir": "./",
+    "module": "ESNext",
+    "target": "ESNext",
+    "jsx": "react-jsx",
+    "sourceMap": true /* SourceMap must be present in webpack config and here*/,
+    "skipLibCheck": true
+  }
+}

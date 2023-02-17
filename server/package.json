@@ -1,0 +1,4 @@
+{
+  "description": "server code for the app, This package is required for tsc and get rid of webpack",
+  "type": "module"
+}
