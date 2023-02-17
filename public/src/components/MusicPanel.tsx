@@ -52,7 +52,7 @@ const MusicPanel = () => {
   };
 
   // change the rating of an song
-  const changeRating = (id: number, rating: string) => {
+  const changeRating = (id: string, rating: string) => {
     const newSongs = [...musicData.songs];
 
     // put the rating in appropriate place
@@ -66,14 +66,14 @@ const MusicPanel = () => {
   };
 
   // modify the song by API call
-  const modifySong = async (id: number, rating: string) => {
+  const modifySong = async (id: string, rating: string) => {
+    let url = allConstants.updateRating
+      .replace("{id}", id)
+      .replace("{rating}", rating);
     try {
-      const res: any = await axios({
+      await fetch(url, {
         method: allConstants.method.PUT,
-        url: allConstants.updateRating
-          .replace("{id}", id)
-          .replace("{rating}", rating),
-        header: allConstants.header,
+        headers: allConstants.header,
       });
     } catch (err) {
       console.log("Some Error occurred during the update", err);

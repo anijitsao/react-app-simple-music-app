@@ -1,5 +1,13 @@
 // SearchBar component
-export default (props) => {
+
+type SearchBarProps = {
+  changeSearchText: any;
+  clearSerchText: any;
+  searchText: string;
+  checkIfEnterPressed: any;
+};
+
+export default (props: SearchBarProps) => {
   const { changeSearchText, clearSerchText, searchText, checkIfEnterPressed } =
     props;
 

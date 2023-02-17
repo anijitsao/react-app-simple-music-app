@@ -1,5 +1,16 @@
 // TopFivePanel component
-export default ({ songs }) => {
+type SongType = {
+  _id: string;
+  singers: string[];
+  name: string;
+  rating: string;
+};
+
+type TopFivePanelProps = {
+  songs: SongType[];
+};
+
+export default ({ songs }: TopFivePanelProps) => {
   const NUMBER_OF_TOP_SONGS = 5;
 
   // sort in descending order
