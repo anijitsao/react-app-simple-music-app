@@ -5,6 +5,7 @@
     "target": "ESNext",
     "jsx": "react-jsx",
     "sourceMap": true /* SourceMap must be present in webpack config and here*/,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "moduleResolution": "node"
   }
 }

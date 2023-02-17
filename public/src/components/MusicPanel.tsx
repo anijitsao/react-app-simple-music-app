@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import axios from "axios";
+import axios, { AxiosResponse } from "axios";
 
 // components
 import SongsPanel from "./allsongs/SongsPanel";
@@ -40,11 +40,11 @@ const MusicPanel = () => {
   // get all the songs from back end
   const getSongs = async () => {
     try {
-      const res = await axios({
+      const res = (await axios({
         method: allConstants.method.GET,
         url: allConstants.getSongs,
         header: allConstants.header,
-      });
+      })) as AxiosResponse;
       setMusicData({ ...musicData, songs: res.data });
     } catch (err) {
       console.log("Error occurred...", err);
@@ -66,7 +66,7 @@ const MusicPanel = () => {
   };
 
   // modify the song by API call
-  const modifySong = async (id, rating) => {
+  const modifySong = async (id: number, rating: string) => {
     try {
       await axios({
         method: allConstants.method.PUT,
@@ -80,7 +80,7 @@ const MusicPanel = () => {
     }
   };
 
-  const makeActiveLink = (index) => {
+  const makeActiveLink = (index: number) => {
     setMusicData({ ...musicData, active: index });
   };
 

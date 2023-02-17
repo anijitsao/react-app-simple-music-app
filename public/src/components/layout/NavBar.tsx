@@ -1,6 +1,17 @@
 import { Link } from "react-router-dom";
 
-export default ({ links, makeActiveLink, active }) => {
+type NavigationLink = {
+  to: string;
+  desc: string;
+  id: number;
+};
+type NavbarProps = {
+  links: NavigationLink[];
+  active: number;
+  makeActiveLink: (index: number) => void;
+};
+
+export default ({ links, makeActiveLink, active }: NavbarProps) => {
   return (
     <nav className="nav-bar">
       {links.map((link) => {
