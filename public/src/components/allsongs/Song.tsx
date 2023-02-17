@@ -4,7 +4,19 @@ import Star from "./Star";
 // Constants
 import Constants from "../Constants";
 
-const Song = (props) => {
+type SongProps = {
+  movie: string;
+  album: string;
+  name: string;
+  rating: string;
+  singers: string[];
+  genre: string[];
+  changeRating: any;
+  _id: string;
+  url: string;
+};
+
+const Song = (props: SongProps) => {
   // initialize the Constants
   const allConstants = Constants();
   const { movie, album, name, rating, singers, genre, changeRating, _id, url } =

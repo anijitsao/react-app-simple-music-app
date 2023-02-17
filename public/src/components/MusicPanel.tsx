@@ -52,7 +52,7 @@ const MusicPanel = () => {
   };
 
   // change the rating of an song
-  const changeRating = (id, rating) => {
+  const changeRating = (id: number, rating: string) => {
     const newSongs = [...musicData.songs];
 
     // put the rating in appropriate place
@@ -68,7 +68,7 @@ const MusicPanel = () => {
   // modify the song by API call
   const modifySong = async (id: number, rating: string) => {
     try {
-      await axios({
+      const res: any = await axios({
         method: allConstants.method.PUT,
         url: allConstants.updateRating
           .replace("{id}", id)
