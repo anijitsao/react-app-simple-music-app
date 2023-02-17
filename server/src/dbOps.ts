@@ -2,20 +2,17 @@
 import mongodb from "mongodb";
 const { MongoClient, ObjectId } = mongodb;
 
-const {
-  URI_TO_CONNECT_MONGODB,
-  DB_NAME,
-  COLLECTION_MUSIC,
-  SUCCESS,
-  SERVER_ERR,
-} = process.env;
+const { DB_NAME, SUCCESS, SERVER_ERR } = process.env;
+
+const URI_TO_CONNECT_MONGODB = <string>process.env.URI_TO_CONNECT_MONGODB;
+const COLLECTION_MUSIC = <string>process.env.COLLECTION_MUSIC;
 
 // this function will connect db and based on API send response
-const connectDbAndRunQueries = async (apiName, req, res) => {
+const connectDbAndRunQueries = async (apiName: string, req: any, res: any) => {
   try {
     const client = await new MongoClient(URI_TO_CONNECT_MONGODB, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
+      // useNewUrlParser: true,
+      // useUnifiedTopology: true,
     }).connect();
     // perform actions on the collection object
     const collection = client.db(DB_NAME).collection(COLLECTION_MUSIC);
@@ -28,7 +25,13 @@ const connectDbAndRunQueries = async (apiName, req, res) => {
 };
 
 // choose the particular function for an API and process it
-const chooseApiAndSendResponse = (apiName, collection, req, res, client) => {
+const chooseApiAndSendResponse = (
+  apiName: string,
+  collection: any,
+  req: any,
+  res: any,
+  client: any
+) => {
   switch (apiName) {
     case "getSongs":
       makeGetSongs(collection, req, res, client);
@@ -40,9 +43,14 @@ const chooseApiAndSendResponse = (apiName, collection, req, res, client) => {
 };
 
 // handle request for welcome API
-const makeGetSongs = async (collection, req, res, client) => {
+const makeGetSongs = async (
+  collection: any,
+  req: any,
+  res: any,
+  client: any
+) => {
   // default output
-  let output = { message: "failed" };
+  let output: any = { message: "failed" };
   try {
     const data = await collection.find({}).toArray();
     output = [...data] || [];
@@ -54,7 +62,12 @@ const makeGetSongs = async (collection, req, res, client) => {
 };
 
 // handle request for /login API
-const makeUpdateRating = async (collection, req, res, client) => {
+const makeUpdateRating = async (
+  collection: any,
+  req: any,
+  res: any,
+  client: any
+) => {
   let output = { message: "failed" };
   try {
     // destructing es6 style
@@ -64,7 +77,7 @@ const makeUpdateRating = async (collection, req, res, client) => {
     rating = isNaN(parseInt(rating)) ? 1 : parseInt(rating);
 
     const docs = await collection.updateOne(
-      { _id: ObjectId(id) },
+      { _id: 1234 },
       { $set: { rating } }
     );
     output = { message: "success" };
@@ -76,7 +89,7 @@ const makeUpdateRating = async (collection, req, res, client) => {
 };
 
 // function to send the response and close the db connection
-function sendResponseAndCloseConnection(client, output, res) {
+function sendResponseAndCloseConnection(client: any, output: any, res: any) {
   if (output && res) {
     console.log(
       `========================\nOUTPUT AS RECEIVED AND BEFORE SENDING\n==================\n`,
