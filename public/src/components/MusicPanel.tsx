@@ -39,13 +39,14 @@ const MusicPanel = () => {
 
   // get all the songs from back end
   const getSongs = async () => {
+    let url = allConstants.getSongs;
     try {
-      const res = (await axios({
+      let responseReceived = await fetch(url, {
         method: allConstants.method.GET,
-        url: allConstants.getSongs,
-        header: allConstants.header,
-      })) as AxiosResponse;
-      setMusicData({ ...musicData, songs: res.data });
+        headers: allConstants.header,
+      });
+      let res = await responseReceived.json();
+      setMusicData({ ...musicData, songs: res });
     } catch (err) {
       console.log("Error occurred...", err);
     }
