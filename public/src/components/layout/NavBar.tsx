@@ -1,26 +1,23 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 
-type NavigationLink = {
-  to: string;
-  desc: string;
-  id: number;
-};
-type NavbarProps = {
-  links: NavigationLink[];
-  active: number;
-  makeActiveLink: (index: number) => void;
-};
+import Constants from "../Constants";
 
-export default ({ links, makeActiveLink, active }: NavbarProps) => {
+export default () => {
+  const allConstants = Constants();
+  const [activeLink, setActiveLink] = useState(allConstants.ACTIVE_LINK);
+
   return (
     <nav className="nav-bar">
-      {links.map((link) => {
+      {allConstants.ALL_LINKS.map((link) => {
         return (
           <div
-            key={link.id}
-            className={link.id == active ? "link-div active-link" : "link-div"}
+            key={link.linkId}
+            className={
+              link.linkId == activeLink ? "link-div active-link" : "link-div"
+            }
             onClick={() => {
-              makeActiveLink(link.id);
+              setActiveLink(link.linkId);
             }}
           >
             <Link to={link.to} className="links">

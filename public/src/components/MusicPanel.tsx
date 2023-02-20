@@ -13,19 +13,6 @@ const MusicPanel = () => {
   // Initialize initial state and its modifier function
   const [musicData, setMusicData] = useState({
     songs: [],
-    links: [
-      {
-        to: "/",
-        desc: "All Songs",
-        id: 1,
-      },
-      {
-        to: "/topfive/",
-        desc: "Top 5 Songs",
-        id: 2,
-      },
-    ],
-    active: 1,
   });
 
   // initialize all the constants
@@ -80,23 +67,19 @@ const MusicPanel = () => {
     }
   };
 
-  const makeActiveLink = (index: number) => {
-    setMusicData({ ...musicData, active: index });
-  };
-
-  const { songs, links, active } = musicData;
+  const { songs } = musicData;
 
   return (
     <Router>
       <section className="music-panel">
-        <NavBar links={links} active={active} makeActiveLink={makeActiveLink} />
+        <NavBar />
         <Routes>
           <Route
             path="/"
             element={<SongsPanel songs={songs} changeRating={changeRating} />}
           />
 
-          <Route path="/topfive/" element={<TopFivePanel songs={songs} />} />
+          <Route path="/topfive" element={<TopFivePanel songs={songs} />} />
         </Routes>
       </section>
     </Router>

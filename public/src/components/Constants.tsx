@@ -23,6 +23,19 @@ function Constants() {
     RATING_POINTS: [1, 2, 3, 4, 5],
     PERMISSIBLE_SONG_FILE_TYPE: ".mp3",
     NUMBER_OF_TOP_SONGS: 5,
+    ALL_LINKS: [
+      {
+        to: "/",
+        desc: "All Songs",
+        linkId: "1",
+      },
+      {
+        to: "/topfive",
+        desc: "Top 5 Songs",
+        linkId: "2",
+      },
+    ],
+    ACTIVE_LINK: "1",
   };
 }
 

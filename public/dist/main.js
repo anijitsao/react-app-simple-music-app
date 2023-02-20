@@ -41894,6 +41894,19 @@ function Constants() {
         RATING_POINTS: [1, 2, 3, 4, 5],
         PERMISSIBLE_SONG_FILE_TYPE: ".mp3",
         NUMBER_OF_TOP_SONGS: 5,
+        ALL_LINKS: [
+            {
+                to: "/",
+                desc: "All Songs",
+                linkId: "1",
+            },
+            {
+                to: "/topfive",
+                desc: "Top 5 Songs",
+                linkId: "2",
+            },
+        ],
+        ACTIVE_LINK: "1",
     };
 }
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Constants);
@@ -41933,19 +41946,6 @@ const MusicPanel = () => {
     // Initialize initial state and its modifier function
     const [musicData, setMusicData] = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)({
         songs: [],
-        links: [
-            {
-                to: "/",
-                desc: "All Songs",
-                id: 1,
-            },
-            {
-                to: "/topfive/",
-                desc: "Top 5 Songs",
-                id: 2,
-            },
-        ],
-        active: 1,
     });
     // initialize all the constants
     const allConstants = (0,_Constants__WEBPACK_IMPORTED_MODULE_5__["default"])();
@@ -41995,11 +41995,8 @@ const MusicPanel = () => {
             console.log("Some Error occurred during the update", err);
         }
     };
-    const makeActiveLink = (index) => {
-        setMusicData({ ...musicData, active: index });
-    };
-    const { songs, links, active } = musicData;
-    return ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_6__.BrowserRouter, { children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("section", { className: "music-panel", children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_layout_NavBar__WEBPACK_IMPORTED_MODULE_4__["default"], { links: links, active: active, makeActiveLink: makeActiveLink }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_7__.Routes, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_7__.Route, { path: "/", element: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_allsongs_SongsPanel__WEBPACK_IMPORTED_MODULE_2__["default"], { songs: songs, changeRating: changeRating }) }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_7__.Route, { path: "/topfive/", element: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_topfive_TopFivePanel__WEBPACK_IMPORTED_MODULE_3__["default"], { songs: songs }) })] })] }) }));
+    const { songs } = musicData;
+    return ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_6__.BrowserRouter, { children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("section", { className: "music-panel", children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_layout_NavBar__WEBPACK_IMPORTED_MODULE_4__["default"], {}), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_7__.Routes, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_7__.Route, { path: "/", element: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_allsongs_SongsPanel__WEBPACK_IMPORTED_MODULE_2__["default"], { songs: songs, changeRating: changeRating }) }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_7__.Route, { path: "/topfive", element: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_topfive_TopFivePanel__WEBPACK_IMPORTED_MODULE_3__["default"], { songs: songs }) })] })] }) }));
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (MusicPanel);
 
@@ -42188,14 +42185,21 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react/jsx-runtime */ "../../node_modules/react/jsx-runtime.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "../../node_modules/react-router-dom/dist/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "../../node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-router-dom */ "../../node_modules/react-router-dom/dist/index.js");
+/* harmony import */ var _Constants__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../Constants */ "./components/Constants.tsx");
 
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (({ links, makeActiveLink, active }) => {
-    return ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("nav", { className: "nav-bar", children: links.map((link) => {
-            return ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", { className: link.id == active ? "link-div active-link" : "link-div", onClick: () => {
-                    makeActiveLink(link.id);
-                }, children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_1__.Link, { to: link.to, className: "links", children: link.desc }) }, link.id));
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (() => {
+    const allConstants = (0,_Constants__WEBPACK_IMPORTED_MODULE_2__["default"])();
+    const [activeLink, setActiveLink] = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(allConstants.ACTIVE_LINK);
+    return ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("nav", { className: "nav-bar", children: allConstants.ALL_LINKS.map((link) => {
+            return ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", { className: link.linkId == activeLink ? "link-div active-link" : "link-div", onClick: () => {
+                    setActiveLink(link.linkId);
+                }, children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Link, { to: link.to, className: "links", children: link.desc }) }, link.linkId));
         }) }));
 });
 
