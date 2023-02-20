@@ -22,6 +22,7 @@ function Constants() {
     },
     RATING_POINTS: [1, 2, 3, 4, 5],
     PERMISSIBLE_SONG_FILE_TYPE: ".mp3",
+    NUMBER_OF_TOP_SONGS: 5,
   };
 }
 

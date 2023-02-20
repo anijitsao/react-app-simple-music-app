@@ -1,42 +1,39 @@
 // TopFivePanel component
-type SongType = {
-  _id: string;
-  singers: string[];
-  name: string;
-  rating: string;
-};
+import { SongType } from "../types/songTypes";
+import Constants from "../Constants";
 
 type TopFivePanelProps = {
   songs: SongType[];
 };
 
 export default ({ songs }: TopFivePanelProps) => {
-  const NUMBER_OF_TOP_SONGS = 5;
+  const allConstants = Constants();
+  const NUMBER_OF_TOP_SONGS = allConstants.NUMBER_OF_TOP_SONGS;
 
   // sort in descending order
   let topSongs = [...songs].sort((a, b) => {
-    return parseInt(b.rating) - parseInt(a.rating);
+    return b.rating - a.rating;
   });
 
   // show upto certain number
   topSongs = topSongs.slice(0, NUMBER_OF_TOP_SONGS);
 
   return (
-    <div className="show-songs">
+    <section className="show-songs">
       {topSongs.length > 0
         ? topSongs.map((song) => {
             return (
-              <div key={song._id} className="song-info">
+              <article key={song._id} className="song-info">
                 <div className="song-name">
                   {song.name}
                   <div className="song-artist">{`Singers: ${song.singers.join(
                     ", "
                   )}`}</div>
                 </div>
-              </div>
+              </article>
             );
           })
         : "List of the songs is populated..."}
-    </div>
+    </section>
   );
 };
