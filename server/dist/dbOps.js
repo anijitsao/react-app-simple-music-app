@@ -1,80 +1,54 @@
-// dependencies
-import mongodb from "mongodb";
-const { MongoClient, ObjectId } = mongodb;
-const { DB_NAME, SUCCESS, SERVER_ERR } = process.env;
-const URI_TO_CONNECT_MONGODB = process.env.URI_TO_CONNECT_MONGODB;
+import { sendResponse } from "./helpers/sendResponse.js";
+import { createConnectionToDB, closeConnectionToDB, convertToObjectId, selectDB, } from "./helpers/dbHelper.js";
 const COLLECTION_MUSIC = process.env.COLLECTION_MUSIC;
-// this function will connect db and based on API send response
-const connectDbAndRunQueries = async (apiName, req, res) => {
-    try {
-        const client = await new MongoClient(URI_TO_CONNECT_MONGODB, {
-        // useNewUrlParser: true,
-        // useUnifiedTopology: true,
-        }).connect();
-        // perform actions on the collection object
-        const collection = client.db(DB_NAME).collection(COLLECTION_MUSIC);
-        // perform several db actions based on API names
-        chooseApiAndSendResponse(apiName, collection, req, res, client);
-    }
-    catch (err) {
-        console.log("FAILED TO CONNECT DB ...", err);
-    }
-};
-// choose the particular function for an API and process it
-const chooseApiAndSendResponse = (apiName, collection, req, res, client) => {
-    switch (apiName) {
-        case "getSongs":
-            makeGetSongs(collection, req, res, client);
-            break;
-        case "updateRating":
-            makeUpdateRating(collection, req, res, client);
-            break;
-    }
-};
+const SUCCESS = process.env.SUCCESS;
+const SERVER_ERR = process.env.SERVER_ERR;
 // handle request for welcome API
-const makeGetSongs = async (collection, req, res, client) => {
+const getSongs = async (req, res) => {
     // default output
     let output = { message: "failed" };
+    const dbClient = createConnectionToDB();
     try {
-        const data = await collection.find({}).toArray();
+        const db = selectDB(dbClient);
+        const data = await db.collection(COLLECTION_MUSIC).find({}).toArray();
         output = [...data] || [];
+        sendResponse(SUCCESS, output, res);
     }
     catch (err) {
         console.log("Error occurred .. ", err);
+        output = { ...output, error: JSON.stringify(err) };
+        sendResponse(SERVER_ERR, output, res);
     }
     finally {
-        sendResponseAndCloseConnection(client, output, res);
+        await closeConnectionToDB(dbClient);
     }
 };
 // handle request for /login API
-const makeUpdateRating = async (collection, req, res, client) => {
+const updateRating = async (req, res) => {
     let output = { message: "failed" };
+    const dbClient = createConnectionToDB();
     try {
         // destructing es6 style
         let { id, rating } = req.params;
+        console.log("id and rating", id, rating);
         // avoid NaN while saving the rating
-        rating = isNaN(parseInt(rating)) ? 1 : parseInt(rating);
-        const docs = await collection.updateOne({ _id: 1234 }, { $set: { rating } });
+        let ratingToSave = isNaN(parseInt(rating)) ? 1 : parseInt(rating);
+        let objectId = convertToObjectId(id);
+        const db = selectDB(dbClient);
+        const docs = await db
+            .collection(COLLECTION_MUSIC)
+            .updateOne({ _id: objectId }, { $set: { ratingToSave } });
         output = { message: "success" };
+        sendResponse(SUCCESS, output, res);
     }
     catch (err) {
         console.log("Error occurred", err);
+        output = { ...output, error: JSON.stringify(err) };
+        sendResponse(SERVER_ERR, output, res);
     }
     finally {
-        sendResponseAndCloseConnection(client, output, res);
+        await closeConnectionToDB(dbClient);
     }
 };
-// function to send the response and close the db connection
-function sendResponseAndCloseConnection(client, output, res) {
-    if (output && res) {
-        console.log(`========================\nOUTPUT AS RECEIVED AND BEFORE SENDING\n==================\n`, output);
-        res.status(SUCCESS).json(output);
-    }
-    else {
-        res.status(SERVER_ERR).json({ msg: "Internal Server Error" });
-    }
-    // close the database connection after sending the response
-    client.close();
-}
 // exports
-export { connectDbAndRunQueries };
+export { getSongs, updateRating };

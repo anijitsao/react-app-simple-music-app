@@ -5,7 +5,7 @@ const { DB_NAME, SUCCESS, SERVER_ERR } = process.env;
 const URI_TO_CONNECT_MONGODB = <string>process.env.URI_TO_CONNECT_MONGODB;
 const COLLECTION_MUSIC = <string>process.env.COLLECTION_MUSIC;
 
-const createConnectionToDB = async () => {
+const createConnectionToDB = () => {
   return new MongoClient(URI_TO_CONNECT_MONGODB);
 };
 
