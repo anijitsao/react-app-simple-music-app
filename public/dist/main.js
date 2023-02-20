@@ -41856,7 +41856,7 @@ __webpack_require__.r(__webpack_exports__);
 // css
 
 const App = () => {
-    return ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", { className: "container", children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components_layout_Header__WEBPACK_IMPORTED_MODULE_1__["default"], {}), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components_MusicPanel__WEBPACK_IMPORTED_MODULE_2__["default"], {})] }));
+    return ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("main", { className: "container", children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components_layout_Header__WEBPACK_IMPORTED_MODULE_1__["default"], {}), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_components_MusicPanel__WEBPACK_IMPORTED_MODULE_2__["default"], {})] }));
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (App);
 
@@ -41999,7 +41999,7 @@ const MusicPanel = () => {
         setMusicData({ ...musicData, active: index });
     };
     const { songs, links, active } = musicData;
-    return ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_6__.BrowserRouter, { children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", { className: "music-panel", children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_layout_NavBar__WEBPACK_IMPORTED_MODULE_4__["default"], { links: links, active: active, makeActiveLink: makeActiveLink }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_7__.Routes, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_7__.Route, { path: "/", element: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_allsongs_SongsPanel__WEBPACK_IMPORTED_MODULE_2__["default"], { songs: songs, changeRating: changeRating }) }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_7__.Route, { path: "/topfive/", element: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_topfive_TopFivePanel__WEBPACK_IMPORTED_MODULE_3__["default"], { songs: songs }) })] })] }) }));
+    return ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_6__.BrowserRouter, { children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("section", { className: "music-panel", children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_layout_NavBar__WEBPACK_IMPORTED_MODULE_4__["default"], { links: links, active: active, makeActiveLink: makeActiveLink }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_7__.Routes, { children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_7__.Route, { path: "/", element: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_allsongs_SongsPanel__WEBPACK_IMPORTED_MODULE_2__["default"], { songs: songs, changeRating: changeRating }) }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_7__.Route, { path: "/topfive/", element: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_topfive_TopFivePanel__WEBPACK_IMPORTED_MODULE_3__["default"], { songs: songs }) })] })] }) }));
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (MusicPanel);
 
@@ -42171,7 +42171,7 @@ __webpack_require__.r(__webpack_exports__);
 
 // Header component
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (() => {
-    return ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", { className: "title", children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("span", { className: "caption", children: ["Simple ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("strong", { children: "Music App" })] }) }));
+    return ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("header", { className: "title", children: (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("span", { className: "caption", children: ["Simple ", (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("strong", { children: "Music App" })] }) }));
 });
 
 
@@ -42221,7 +42221,7 @@ __webpack_require__.r(__webpack_exports__);
     const NUMBER_OF_TOP_SONGS = allConstants.NUMBER_OF_TOP_SONGS;
     // sort in descending order
     let topSongs = [...songs].sort((a, b) => {
-        return parseInt(b.rating) - parseInt(a.rating);
+        return b.rating - a.rating;
     });
     // show upto certain number
     topSongs = topSongs.slice(0, NUMBER_OF_TOP_SONGS);

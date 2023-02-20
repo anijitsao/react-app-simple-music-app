@@ -7,11 +7,11 @@ import "./css/style.css";
 
 const App = () => {
   return (
-    <div className="container">
+    <main className="container">
       {/* including the Header and other components */}
       <Header />
       <MusicPanel />
-    </div>
+    </main>
   );
 };
 

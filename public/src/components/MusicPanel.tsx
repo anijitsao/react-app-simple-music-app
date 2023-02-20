@@ -88,7 +88,7 @@ const MusicPanel = () => {
 
   return (
     <Router>
-      <div className="music-panel">
+      <section className="music-panel">
         <NavBar links={links} active={active} makeActiveLink={makeActiveLink} />
         <Routes>
           <Route
@@ -98,7 +98,7 @@ const MusicPanel = () => {
 
           <Route path="/topfive/" element={<TopFivePanel songs={songs} />} />
         </Routes>
-      </div>
+      </section>
     </Router>
   );
 };
