@@ -11,7 +11,7 @@ import router from "./routes.js";
 const app = express();
 // middlewares
 app.use(cors());
-app.use(express.json({ type: "application/json" }));
+app.use(express.json());
 app.use(helmet());
 // serve the static pages
 app.use(express.static(path.join(__dirname, "../../public/dist")));
