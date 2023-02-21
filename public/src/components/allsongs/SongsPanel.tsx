@@ -8,7 +8,6 @@ const SongsPanel = (props) => {
   // Initialize the initial state and its modifier function
   const [songData, setSongData] = useState({
     songs: [],
-    searchText: "",
     emptyMessage: "List of the songs is populated...",
   });
 
@@ -16,26 +15,10 @@ const SongsPanel = (props) => {
     setSongData({ ...songData, songs: props.songs });
   }, [props.songs.length]);
 
-  const changeSearchText = (e) => {
-    setSongData({ ...songData, searchText: e.target.value });
-  };
-
-  // when the X is pressed
-  const clearSerchText = () => {
-    setSongData({ ...songData, searchText: "" });
-  };
-
-  // when ENTER key is pressed search the songs list
-  const checkIfEnterPressed = (e) => {
-    if (e.which == 13 || e.keyCode == 13) {
-      modifySongs();
-    }
-  };
-
   // modify the list of songs based on searched text
-  const modifySongs = () => {
+  const modifySongs = (searchText: string) => {
     let toBeSearchedSongs = [...props.songs];
-    const searchValue = songData.searchText.toLowerCase();
+    const searchValue = searchText.toLowerCase();
 
     // if the user is searching something only then
     if (searchValue != "") {
@@ -61,17 +44,12 @@ const SongsPanel = (props) => {
     });
   };
 
-  const { songs, searchText, emptyMessage } = songData;
+  const { songs, emptyMessage } = songData;
   const { changeRating } = props;
 
   return (
     <section className="show-songs">
-      <SearchBar
-        searchText={searchText}
-        clearSerchText={clearSerchText}
-        checkIfEnterPressed={checkIfEnterPressed}
-        changeSearchText={changeSearchText}
-      />
+      <SearchBar modifySongs={modifySongs} />
 
       <article className="song-list">
         {songs.length > 0
