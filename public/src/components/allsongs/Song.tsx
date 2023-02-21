@@ -1,6 +1,7 @@
-// components
+// components and types
 import Star from "./Star";
 import Popover from "./Popover";
+import { SongType } from "../types/songTypes";
 
 // Constants
 import Constants from "../Constants";
@@ -8,13 +9,16 @@ import Constants from "../Constants";
 // css
 import "../../css/song.css";
 
-import { SongType } from "../types/songTypes";
+type SongProps = {
+  key: string;
+  song: SongType;
+  changeRating: (id: string, rating: number) => void;
+};
 
-const Song = (props: SongType) => {
+const Song = (props: SongProps) => {
   // initialize the Constants
   const allConstants = Constants();
-  const { movie, album, name, rating, singers, genre, changeRating, _id, url } =
-    props;
+  const { movie, album, name, rating, singers, genre, _id, url } = props.song;
 
   return (
     <article className="song-info">
@@ -42,7 +46,7 @@ const Song = (props: SongType) => {
           return (
             <Star
               key={index}
-              changeRating={() => changeRating(_id, ele)}
+              changeRating={() => props.changeRating(_id, ele)}
               rating={rating}
               index={ele}
             />

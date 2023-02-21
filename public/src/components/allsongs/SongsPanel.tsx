@@ -1,10 +1,16 @@
-import { SyntheticEvent, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 // components
 import Song from "./Song";
 import SearchBar from "./SearchBar";
+import { SongType } from "../types/songTypes";
 
-const SongsPanel = (props) => {
+type SongsPanelProps = {
+  songs: SongType[];
+  changeRating: (id: string, rating: number) => void;
+};
+
+const SongsPanel = (props: SongsPanelProps) => {
   // Initialize the initial state and its modifier function
   const [songData, setSongData] = useState({
     songs: [],
