@@ -1,7 +1,7 @@
 // SearchBar component
+import { KeyboardEvent, useState } from "react";
 
 // css
-import { KeyboardEvent, useState } from "react";
 import "../../css/searchBar.css";
 
 type SearchBarProps = {

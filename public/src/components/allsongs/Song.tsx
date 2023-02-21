@@ -8,19 +8,9 @@ import Constants from "../Constants";
 // css
 import "../../css/song.css";
 
-type SongProps = {
-  movie: string;
-  album: string;
-  name: string;
-  rating: number;
-  singers: string[];
-  genre: string[];
-  changeRating: any;
-  _id: string;
-  url: string;
-};
+import { SongType } from "../types/songTypes";
 
-const Song = (props: SongProps) => {
+const Song = (props: SongType) => {
   // initialize the Constants
   const allConstants = Constants();
   const { movie, album, name, rating, singers, genre, changeRating, _id, url } =
