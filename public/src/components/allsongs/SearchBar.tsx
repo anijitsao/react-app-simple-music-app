@@ -14,7 +14,7 @@ export default (props: SearchBarProps) => {
   const [searchText, setSearchText] = useState("");
 
   const onKeyDownHandler = (e: KeyboardEvent) => {
-    if (e.key === "Enter" && searchText) {
+    if (e.key === "Enter") {
       modifySongs(searchText);
     }
   };
@@ -24,6 +24,7 @@ export default (props: SearchBarProps) => {
       <div className="search-div">
         <span className="fa fa-search search-icon"></span>
         <input
+          name="search-box"
           type="text"
           className="search-box"
           value={searchText}
@@ -32,7 +33,11 @@ export default (props: SearchBarProps) => {
           placeholder="Search by artist, genre, name etc."
         />
         <span
-          className="fa fa-close close-icon"
+          className={
+            searchText
+              ? "fa fa-close close-icon"
+              : "fa fa-close close-icon invisible"
+          }
           onClick={() => setSearchText("")}
         ></span>
       </div>
