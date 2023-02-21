@@ -12,7 +12,7 @@ export default (props: SearchBarProps) => {
     props;
 
   return (
-    <div className="search-bar">
+    <article className="search-bar">
       <div className="search-div">
         <span className="fa fa-search search-icon"></span>
         <input
@@ -28,6 +28,6 @@ export default (props: SearchBarProps) => {
           onClick={clearSerchText}
         ></span>
       </div>
-    </div>
+    </article>
   );
 };

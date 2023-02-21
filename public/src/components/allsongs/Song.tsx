@@ -8,7 +8,7 @@ type SongProps = {
   movie: string;
   album: string;
   name: string;
-  rating: string;
+  rating: number;
   singers: string[];
   genre: string[];
   changeRating: any;
@@ -23,8 +23,8 @@ const Song = (props: SongProps) => {
     props;
 
   return (
-    <div className="song-info">
-      <div className="song-name">
+    <article className="song-info">
+      <section className="song-name">
         {name}
 
         <div className="song-artist">
@@ -47,11 +47,11 @@ const Song = (props: SongProps) => {
             </div>
           </div>
         </div>
-      </div>
-      <div className="listen-song">
+      </section>
+      <section className="listen-song">
         <audio controls src={url} />
-      </div>
-      <div className="song-rating">
+      </section>
+      <section className="song-rating">
         {allConstants.RATING_POINTS.map((ele, index) => {
           return (
             <Star
@@ -62,8 +62,8 @@ const Song = (props: SongProps) => {
             />
           );
         })}
-      </div>
-    </div>
+      </section>
+    </article>
   );
 };
 

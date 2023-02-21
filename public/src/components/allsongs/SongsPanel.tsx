@@ -65,7 +65,7 @@ const SongsPanel = (props) => {
   const { changeRating } = props;
 
   return (
-    <div className="show-songs">
+    <section className="show-songs">
       <SearchBar
         searchText={searchText}
         clearSerchText={clearSerchText}
@@ -73,7 +73,7 @@ const SongsPanel = (props) => {
         changeSearchText={changeSearchText}
       />
 
-      <div className="song-list">
+      <article className="song-list">
         {songs.length > 0
           ? songs.map((song) => {
               return (
@@ -81,8 +81,8 @@ const SongsPanel = (props) => {
               );
             })
           : emptyMessage}
-      </div>
-    </div>
+      </article>
+    </section>
   );
 };
 
