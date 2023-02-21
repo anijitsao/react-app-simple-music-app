@@ -1,0 +1,94 @@
+/* Popover related */
+
+/* added to get color for ::before pseudo classes */
+:root {
+  --lighter-grey: #fff;
+}
+
+.popover {
+  position: relative;
+  display: inline-block;
+  padding: 10px;
+}
+
+.popover-icon {
+  color: var(--light-purple);
+  cursor: pointer;
+}
+
+.popover-content {
+  display: none;
+  background-color: var(--lighter-grey);
+  padding: 1em;
+
+  position: absolute;
+  z-index: 1;
+  top: -29px;
+  left: 23px;
+
+  border-radius: 2px;
+  font-size: 1.3rem;
+
+  width: 200px;
+  opacity: 0.8;
+  border: 1px solid var(--dark-grey);
+}
+
+.popover-content::before {
+  content: "";
+  border-bottom: solid 10px transparent;
+  border-top: solid 10px transparent;
+  border-right: solid 10px var(--lighter-grey);
+
+  position: absolute;
+  left: -8px;
+  top: 36%;
+}
+
+.popover:hover .popover-content {
+  display: block;
+}
+
+/* audio related */
+audio {
+  width: 200px;
+}
+
+@media screen and (max-width: 500px) {
+  body {
+    font-size: var(--font-small);
+  }
+  .container {
+    width: 100vw;
+  }
+
+  .popover-content::before {
+    left: -8px;
+    top: 25%;
+  }
+
+  .popover-content {
+    top: -13px;
+    left: 21px;
+
+    border-radius: 2px;
+    font-size: 1.3rem;
+
+    width: 150px;
+    opacity: 0.8;
+    border: 1px solid var(--light-grey);
+  }
+
+  audio {
+    width: 150px;
+  }
+
+  .movie-info {
+    width: 20px;
+  }
+}
+
+.popover-info {
+  display: block;
+  font-size: 0.5em;
+}

@@ -1,0 +1,49 @@
+/* Music Panel related */
+.music-panel {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+.nav-bar {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  height: 40px;
+}
+
+li {
+  list-style: none;
+  display: inline-block;
+}
+
+.links {
+  padding: 1em;
+  text-decoration: none;
+  color: var(--light-purple);
+}
+
+.link-div {
+  text-transform: uppercase;
+  padding: 1em;
+  text-align: center;
+}
+
+.link-div:hover,
+.link-div:focus,
+.link-div:active {
+  border-bottom: solid 4px var(--light-purple);
+}
+
+.active-link {
+  border-bottom: solid 4px var(--light-purple);
+}
+
+/* Song Panel related */
+.show-songs {
+  padding: 1em;
+  height: 70vh;
+}
+
+.song-list {
+  height: 80%;
+  overflow-y: auto;
+}

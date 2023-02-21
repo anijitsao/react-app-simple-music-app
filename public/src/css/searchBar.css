@@ -1,0 +1,62 @@
+/* Search bar related */
+.search-bar {
+    margin: 1em;
+  }
+  
+  .search-div {
+    color: var(--light-purple);
+    font-size: 1em;
+    position: relative;
+  }
+  
+  .search-box {
+    visibility: hidden;
+    letter-spacing: 1px;
+    padding: 1em;
+    height: 40px;
+  }
+  
+  .search-icon {
+    position: absolute;
+    top: 40%;
+    left: -4px;
+    color: var(--light-purple);
+  }
+  
+  .search-div:hover {
+    cursor: pointer;
+  }
+  
+  .search-div:hover .search-box {
+    visibility: visible;
+  }
+  
+  .search-div:hover .close-icon {
+    visibility: visible;
+  }
+  
+  .close-icon {
+    position: absolute;
+    right: 0;
+    top: 40%;
+    visibility: hidden;
+    color: var(--darker-grey);
+  }
+  
+  .close-icon:hover {
+    cursor: pointer;
+  }
+  
+  input[type="text"] {
+    width: 100%;
+    border: 0;
+    outline: 0;
+  }
+  
+  input[type="text"]:hover {
+    cursor: pointer;
+  }
+  
+  input[type="text"]:focus {
+    border-bottom: solid 2px var(--light-purple);
+  }

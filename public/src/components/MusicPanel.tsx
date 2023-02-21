@@ -9,6 +9,9 @@ import NavBar from "./layout/NavBar";
 // Constants
 import Constants from "./Constants";
 
+// css
+import "../css/musicPanel.css";
+
 const MusicPanel = () => {
   // Initialize initial state and its modifier function
   const [musicData, setMusicData] = useState({

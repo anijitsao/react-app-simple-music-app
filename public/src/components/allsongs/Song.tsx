@@ -1,8 +1,12 @@
 // components
 import Star from "./Star";
+import Popover from "./Popover";
 
 // Constants
 import Constants from "../Constants";
+
+// css
+import "../../css/song.css";
 
 type SongProps = {
   movie: string;
@@ -31,21 +35,13 @@ const Song = (props: SongProps) => {
           <span className="movie-info">{`${
             movie ? `Movie: ${movie}` : `Album: ${album}`
           }`}</span>
-          <div className="popover">
-            <span className="popover-icon fa fa-info-circle"></span>
-            <div className="popover-content">
-              <span className="popover-info">{`Name: ${name}`}</span>
-              <span className="popover-info">{`Movie: ${
-                movie ? movie : album
-              }`}</span>
-              <span className="popover-info">{`Genre: ${genre.join(
-                ", "
-              )}`}</span>
-              <span className="popover-info">{`Singers: ${singers.join(
-                ", "
-              )}`}</span>
-            </div>
-          </div>
+          <Popover
+            name={name}
+            movie={movie}
+            album={album}
+            genre={genre}
+            singers={singers}
+          />
         </div>
       </section>
       <section className="listen-song">

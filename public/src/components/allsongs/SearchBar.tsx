@@ -1,5 +1,8 @@
 // SearchBar component
 
+// css
+import "../../css/searchBar.css";
+
 type SearchBarProps = {
   changeSearchText: any;
   clearSerchText: any;

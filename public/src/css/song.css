@@ -1,0 +1,35 @@
+/* song info related */
+.song-info {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  border-bottom: solid 1px var(--light-grey);
+  margin-bottom: 1em;
+  padding: 1em;
+  grid-gap: 1em;
+}
+
+.song-info:hover {
+  opacity: 1;
+  box-shadow: 1px 1px 6px var(--light-shadow);
+}
+
+.song-name {
+  font-size: 1em;
+  padding: 1px;
+}
+
+.song-artist {
+  font-size: 0.7em;
+}
+
+.song-rating {
+  font-size: 0.7em;
+}
+
+.movie-info {
+  width: 100px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  display: inline-block;
+}
