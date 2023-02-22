@@ -1,17 +1,14 @@
 // Star component
-import { MouseEventHandler, SyntheticEvent } from "react";
+import { MouseEventHandler } from "react";
 
 type StarProps = {
   rating: number;
   index: number;
-  changeRating: any;
+  changeRating?: MouseEventHandler;
 };
 
 export default ({ rating, index, changeRating }: StarProps) => {
-  let starRating = rating || 1;
   const checkedCount =
-    index <= starRating
-      ? "fa fa-star checked star"
-      : "fa fa-star unchecked star";
+    index <= rating ? "fa fa-star checked star" : "fa fa-star unchecked star";
   return <span className={checkedCount} onClick={changeRating}></span>;
 };

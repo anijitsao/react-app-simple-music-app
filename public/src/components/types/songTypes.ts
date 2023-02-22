@@ -6,7 +6,6 @@ export type SongType = {
   rating?: number;
   singers?: string[];
   genre?: string[];
-  // changeRating: any;
 
   url?: string;
 };
