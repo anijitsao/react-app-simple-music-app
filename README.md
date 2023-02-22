@@ -62,7 +62,7 @@ npm install
 Run the server:
 
 ```
-npm run server
+npm run server:start
 ```
 
 Open the web browser and type`http://localhost:3000` in the address bar to load the application

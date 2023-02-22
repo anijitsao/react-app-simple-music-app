@@ -8,7 +8,7 @@ type StarProps = {
 };
 
 export default ({ rating, index, changeRating }: StarProps) => {
-  const checkedCount =
+  const checkedCountStyle =
     index <= rating ? "fa fa-star checked star" : "fa fa-star unchecked star";
-  return <span className={checkedCount} onClick={changeRating}></span>;
+  return <span className={checkedCountStyle} onClick={changeRating}></span>;
 };
