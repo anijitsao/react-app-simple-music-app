@@ -10,7 +10,6 @@ import Constants from "../Constants";
 import "../../css/song.css";
 
 type SongProps = {
-  key: string;
   song: SongType;
   changeRating: (id: string, rating: number) => void;
 };
@@ -18,24 +17,17 @@ type SongProps = {
 const Song = (props: SongProps) => {
   // initialize the Constants
   const allConstants = Constants();
-  const { movie, album, name, rating, singers, genre, _id, url } = props.song;
+  const { album, name, rating, singers, genre, _id, url } = props.song;
 
+  const popoverInfo = { name, album, genre, singers };
   return (
     <article className="song-info">
       <section className="song-name">
         {name}
 
         <div className="song-artist">
-          <span className="movie-info">{`${
-            movie ? `Movie: ${movie}` : `Album: ${album}`
-          }`}</span>
-          <Popover
-            name={name}
-            movie={movie}
-            album={album}
-            genre={genre}
-            singers={singers}
-          />
+          <span className="movie-info">{`Album: ${album}`}</span>
+          <Popover popoverInfo={popoverInfo} />
         </div>
       </section>
       <section className="listen-song">
