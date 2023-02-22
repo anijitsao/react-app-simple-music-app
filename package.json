@@ -1,6 +1,6 @@
 {
-  "name": "music-app",
-  "version": "1.0.0",
+  "name": "react-app-simple-music-app",
+  "version": "4.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -11,9 +11,17 @@
     "server:build": "node_modules/.bin/tsc -p server/tsconfig.json",
     "server:start": "node -r dotenv/config ./server/dist/server.js dotenv_config_path=./server/.env"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/anijitsahu/react-app-simple-music-app.git"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/anijitsahu/react-app-simple-music-app/issues"
+  },
+  "homepage": "https://github.com/anijitsahu/react-app-simple-music-app#readme",
   "devDependencies": {
     "@types/cors": "^2.8.13",
     "@types/express": "^4.17.17",
