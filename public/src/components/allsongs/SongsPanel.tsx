@@ -31,9 +31,7 @@ const SongsPanel = (props: SongsPanelProps) => {
       toBeSearchedSongs = toBeSearchedSongs.filter((song) => {
         let songAttrs = `${song.name}, ${song.genre.join(
           ", "
-        )}, ${song.singers.join(", ")}, ${
-          song.movie ? song.movie : song.album
-        }`;
+        )}, ${song.singers.join(", ")}, ${song.album}`;
         songAttrs = songAttrs.toLowerCase();
         return songAttrs.includes(searchValue);
       });
