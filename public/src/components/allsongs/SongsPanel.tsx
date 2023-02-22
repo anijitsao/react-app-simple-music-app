@@ -61,7 +61,11 @@ const SongsPanel = (props: SongsPanelProps) => {
         {songs.length > 0
           ? songs.map((song) => {
               return (
-                <Song key={song._id} {...song} changeRating={changeRating} />
+                <Song
+                  key={song._id}
+                  song={...song}
+                  changeRating={changeRating}
+                />
               );
             })
           : emptyMessage}
