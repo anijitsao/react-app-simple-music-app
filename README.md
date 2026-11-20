@@ -11,6 +11,8 @@ This is a _responsive web application_ for viewing in both Mobile and Desktop.
 Back end is implemented using [Node JS](https://nodejs.org/en/docs), [Express JS](https://expressjs.com/en/api.html) and [MongoDB Atlas](https://www.mongodb.com/cloud/atlas).
 
 
+![Node JS](https://img.shields.io/badge/Node_JS-22.1.3-FFCD11?logo=nodedotjs&logoColor=FFCD11) ![Express JS](https://img.shields.io/badge/Express_JS-4.17.2-006D41?logo=express) ![npm](https://img.shields.io/badge/npm-10.1.3-00CA8E?logo=npm) ![MongoDB](https://img.shields.io/badge/Mongo_DB-5.0.1-green?logo=mongodb) ![React JS](https://img.shields.io/badge/React_JS-17.2.0-61DAFB?logo=react) ![Typescript](https://img.shields.io/badge/Typescript-4.9.5-3178C6?logo=typescript) ![Webpack](https://img.shields.io/badge/Webpack-5.75.0-8DD6F9?logo=webpack) ![HTML5](https://img.shields.io/badge/HTML-5.0.0-E34826?logo=html5) ![CSS3](https://img.shields.io/badge/CSS-3.0.0-663399?logo=css&logoColor=00B265) ![Google Fonts](https://img.shields.io/badge/Google_Fonts-2.138.1-02B785?logo=googlefonts&logoColor=02B785) ![Font Awesome](https://img.shields.io/badge/Font_Awesome-5.15.0-538DD7?logo=fontawesome)
+
 
 ## Features
 
