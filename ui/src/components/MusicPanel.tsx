@@ -34,6 +34,11 @@ const MusicPanel = () => {
         method: allConstants.method.GET,
         headers: allConstants.header,
       });
+
+      if (!responseReceived.ok) {
+        throw new Error("Unable to fetch songs");
+      }
+
       let res = await responseReceived.json();
       setMusicData({ ...musicData, songs: res });
     } catch (err) {
