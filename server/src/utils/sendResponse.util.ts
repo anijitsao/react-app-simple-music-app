@@ -1,9 +1,9 @@
-import { Response } from "express";
+import { type Response } from "express";
 
 export function sendResponse(
   statusCode: string,
   responseBody: object,
-  res: Response
+  res: Response,
 ) {
   res.status(Number(statusCode)).json(responseBody);
 }

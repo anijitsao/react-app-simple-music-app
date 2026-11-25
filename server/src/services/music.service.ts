@@ -1,12 +1,12 @@
 // dependencies
 import { Request, Response } from "express";
-import { sendResponse } from "./helpers/sendResponse.js";
+import { sendResponse } from "../utils/sendResponse.util.js";
 import {
   createConnectionToDB,
   closeConnectionToDB,
   convertToObjectId,
   selectDB,
-} from "./helpers/dbHelper.js";
+} from "../utils/db.util.js";
 
 const COLLECTION_MUSIC = <string>process.env.COLLECTION_MUSIC;
 const SUCCESS = <string>process.env.SUCCESS;
@@ -20,7 +20,7 @@ const getSongs = async (req: Request, res: Response) => {
   try {
     const db = selectDB(dbClient);
     const data = await db.collection(COLLECTION_MUSIC).find({}).toArray();
-    output = [...data] || [];
+    output = [...data];
     sendResponse(SUCCESS, output, res);
   } catch (err) {
     console.log("Error occurred .. ", err);
@@ -40,11 +40,10 @@ const updateRating = async (req: Request, res: Response) => {
     // destructing es6 style
     let { id, rating } = req.params;
     console.log("id and rating", id, rating);
-    
 
     // avoid NaN while saving the rating
-    let ratingToSave = isNaN(parseInt(rating)) ? 1 : parseInt(rating);
-    let objectId = convertToObjectId(id);
+    let ratingToSave = isNaN(parseInt(rating as string)) ? 1 : parseInt(rating as string);
+    let objectId = convertToObjectId(id as string);
 
     const db = selectDB(dbClient);
     const docs = await db

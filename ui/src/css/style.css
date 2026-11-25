@@ -1,5 +1,6 @@
 @import url("https://fonts.googleapis.com/css?family=Roboto:300,400,700");
-@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css");
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.min.css");
+
 
 * {
   margin: 0;
@@ -35,7 +36,7 @@ body {
 
 .container {
   display: grid;
-  grid-template-rows: 300 1fr;
+  grid-template-rows: 70px 1fr;
   grid-template-columns: 1fr;
 
   /* margin to make it look good */
