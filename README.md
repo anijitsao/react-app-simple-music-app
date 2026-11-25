@@ -2,16 +2,16 @@
 
 A Simple Music Application using [React JS](https://react.dev/learn), a JavaScript library to make awesome UI by Facebook, [Node JS](https://nodejs.org/en/docs), [Express JS](https://expressjs.com/en/api.html) and [MongoDB](https://docs.mongodb.com/).
 
-This application uses **component oriented UI** creation paradigm. All components are written in [JSX](https://react.dev/learn/writing-markup-with-jsx) and ES6 style and are combined to get a single build for production purpose using [Webpack 5](https://webpack.js.org/concepts/).
+This application uses **component oriented UI** creation paradigm. All components are written in [JSX](https://react.dev/learn/writing-markup-with-jsx) and ES6 style and are combined to get a single build for production purpose using [Vite](https://vite.dev/guide/).
 
-[tsc](https://www.typescriptlang.org/docs/handbook/compiler-options.html) is used to _transpile_ all [JSX](https://react.dev/learn/writing-markup-with-jsx) code to vanilla JavaScript code. For UI creation [HTML5](https://www.w3schools.com/html/html5_intro.asp) and [CSS3](https://www.w3schools.com/css/) are used.
+[tsc](https://www.typescriptlang.org/docs/handbook/compiler-options.html) for `server/` code along with [Oxc Transformer](https://vite.dev/guide/features#jsx) is used for `ui/` to _transpile_ all [JSX](https://react.dev/learn/writing-markup-with-jsx) code to vanilla JavaScript code. For UI creation [HTML5](https://www.w3schools.com/html/html5_intro.asp) and [CSS3](https://www.w3schools.com/css/) are used.
 
 This is a _responsive web application_ for viewing in both Mobile and Desktop.
 
 Back end is implemented using [Node JS](https://nodejs.org/en/docs), [Express JS](https://expressjs.com/en/api.html) and [MongoDB Atlas](https://www.mongodb.com/cloud/atlas).
 
 
-![Node JS](https://img.shields.io/badge/Node_JS-22.1.3-FFCD11?logo=nodedotjs&logoColor=FFCD11) ![Express JS](https://img.shields.io/badge/Express_JS-4.17.2-006D41?logo=express) ![npm](https://img.shields.io/badge/npm-10.1.3-00CA8E?logo=npm) ![MongoDB](https://img.shields.io/badge/Mongo_DB-5.0.1-green?logo=mongodb) ![React JS](https://img.shields.io/badge/React_JS-17.2.0-61DAFB?logo=react) ![Typescript](https://img.shields.io/badge/Typescript-4.9.5-FF6600?logo=typescript) ![Webpack](https://img.shields.io/badge/Webpack-5.75.0-8DD6F9?logo=webpack) ![HTML5](https://img.shields.io/badge/HTML-5.0.0-E34826?logo=html5) ![CSS3](https://img.shields.io/badge/CSS-3.0.0-663399?logo=css&logoColor=00B265) ![Google Fonts](https://img.shields.io/badge/Google_Fonts-2.138.1-02B785?logo=googlefonts&logoColor=02B785) ![Font Awesome](https://img.shields.io/badge/Font_Awesome-5.15.0-538DD7?logo=fontawesome)
+![Node JS](https://img.shields.io/badge/Node_JS-26.4.0-FFCD11?logo=nodedotjs&logoColor=FFCD11) ![Express JS](https://img.shields.io/badge/Express_JS-5.3.0-006D41?logo=express) ![npm](https://img.shields.io/badge/npm-12.2.2-00CA8E?logo=npm) ![MongoDB](https://img.shields.io/badge/Mongo_DB-7.9.1-green?logo=mongodb) ![React JS](https://img.shields.io/badge/React_JS-19.3.1-61DAFB?logo=react) ![Typescript](https://img.shields.io/badge/Typescript-7.0.2-FF6600?logo=typescript) ![React Router](https://img.shields.io/badge/React_Router-7.18.6-CA4245?logo=reactrouter) ![Vite](https://img.shields.io/badge/Vite-8.3.8-9135FF?logo=vite) ![HTML5](https://img.shields.io/badge/HTML-5.0.0-E34826?logo=html5) ![CSS3](https://img.shields.io/badge/CSS-3.0.0-663399?logo=css&logoColor=00B265) ![Google Fonts](https://img.shields.io/badge/Google_Fonts-2.138.1-02B785?logo=googlefonts&logoColor=02B785) ![Font Awesome](https://img.shields.io/badge/Font_Awesome-7.3.1-538DD7?logo=fontawesome)
 
 
 ## Features
@@ -24,7 +24,7 @@ Back end is implemented using [Node JS](https://nodejs.org/en/docs), [Express JS
 
 
 4. This is Full Stack Simple Music Application.
-5. All the song details are stored in the [MongoDB Atlas](https://www.mongodb.com/cloud/atlas). This example uses a _free/ shared_ account. **So Please use it wisely**.
+5. All the song details are stored in the [MongoDB Atlas](https://www.mongodb.com/cloud/atlas). You can either have one account or use local installation of the same.
 
 
 <ol start=6>
@@ -58,7 +58,7 @@ $ npm install
 Run the server:
 
 ```
-$ npm run server:start
+$ npm run start
 ```
 
 Open the web browser and type`http://localhost:3000` in the address bar to load the application.

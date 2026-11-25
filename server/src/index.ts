@@ -20,7 +20,7 @@ app.use(helmet());
 app.use(httpLogger);
 
 // serve the static pages
-app.use(express.static(path.join(__dirname, "../../public/dist")));
+app.use(express.static(path.join(__dirname, "../../ui/dist")));
 
 // different routes
 app.use("/services", router);
