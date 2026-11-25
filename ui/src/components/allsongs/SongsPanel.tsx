@@ -61,7 +61,7 @@ const SongsPanel = (props: SongsPanelProps) => {
               return (
                 <Song
                   key={song._id}
-                  song={...song}
+                  song={song}
                   changeRating={changeRating}
                 />
               );
